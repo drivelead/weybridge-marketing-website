@@ -121,7 +121,7 @@ export default function Example() {
             />
           </a>
           <div className="flex flex-1 justify-end">
-            <a href="#" className="text-sm/6 font-semibold text-slate-900">
+            <a href="https://www.notion.so/Weybridge-Ventures-Teamspace-1af76ddeac1d8065847cf375671c21c4" target="_blank" className="text-sm/6 font-semibold text-slate-900">
               Log in <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
