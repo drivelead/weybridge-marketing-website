@@ -6,9 +6,9 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { ArrowPathIcon, CloudArrowUpIcon, LockClosedIcon } from '@heroicons/react/20/solid'
 
 const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'About Us', href: '#aboutus' },
+  { name: 'Our Ventures', href: '#ourventures' },
+  { name: 'Contact', href: '#contactus' },
 ]
 
 const features = [
@@ -64,18 +64,17 @@ const features = [
 
 const footerNavigation = {
   main: [
-    { name: 'About', href: '#' },
-    { name: 'Blog', href: '#' },
-    { name: 'Jobs', href: '#' },
-    { name: 'Press', href: '#' },
-    { name: 'Accessibility', href: '#' },
-    { name: 'Partners', href: '#' },
+    { name: 'About Weybridge Ventures', href: '#aboutus' },
+    { name: 'Our Ventures & Partnerships', href: '#ourventures' },
+    { name: 'Contact Us', href: '#contactus' },
+    { name: 'Terms of Use', href: '#' },
+    { name: 'Privacy Policy', href: '#' },
   ],
   social: [
     {
       name: 'Facebook',
       href: '#',
-      icon: (props) => (
+      icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -88,7 +87,7 @@ const footerNavigation = {
     {
       name: 'Instagram',
       href: '#',
-      icon: (props) => (
+      icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -101,7 +100,7 @@ const footerNavigation = {
     {
       name: 'X',
       href: '#',
-      icon: (props) => (
+      icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path d="M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5685 21H20.8131L13.6819 10.6218H13.6823ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.096V13.0956Z" />
         </svg>
@@ -110,7 +109,7 @@ const footerNavigation = {
     {
       name: 'GitHub',
       href: '#',
-      icon: (props) => (
+      icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -123,7 +122,7 @@ const footerNavigation = {
     {
       name: 'YouTube',
       href: '#',
-      icon: (props) => (
+      icon: (props: React.SVGProps<SVGSVGElement>) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -147,7 +146,7 @@ export default function Example() {
           <div className="flex flex-1">
             <div className="hidden lg:flex lg:gap-x-12">
               {navigation.map((item) => (
-                <a key={item.name} href={item.href} className="text-sm/6 font-semibold text-gray-900">
+                <a key={item.name} href={item.href} className="text-sm/6 font-semibold text-slate-900">
                   {item.name}
                 </a>
               ))}
@@ -156,23 +155,23 @@ export default function Example() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
-                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700"
               >
                 <span className="sr-only">Open main menu</span>
                 <Bars3Icon aria-hidden="true" className="size-6" />
               </button>
             </div>
           </div>
-          <a href="#" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+          <a href="#" className="">
+            <span className="sr-only">Weybridge Ventures</span>
             <img
-              alt=""
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-              className="h-8 w-auto"
+              alt="Weybridge Ventures Logo"
+              src="weybridge-logo.svg"
+              className="h-10 md:h-12 lg:h-14 w-auto"
             />
           </a>
           <div className="flex flex-1 justify-end">
-            <a href="#" className="text-sm/6 font-semibold text-gray-900">
+            <a href="#" className="text-sm/6 font-semibold text-slate-900">
               Log in <span aria-hidden="true">&rarr;</span>
             </a>
           </div>
@@ -185,7 +184,7 @@ export default function Example() {
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="-m-2.5 rounded-md p-2.5 text-gray-700"
+                  className="-m-2.5 rounded-md p-2.5 text-slate-700"
                 >
                   <span className="sr-only">Close menu</span>
                   <XMarkIcon aria-hidden="true" className="size-6" />
@@ -200,7 +199,7 @@ export default function Example() {
                 />
               </a>
               <div className="flex flex-1 justify-end">
-                <a href="#" className="text-sm/6 font-semibold text-gray-900">
+                <a href="#" className="text-sm/6 font-semibold text-slate-900">
                   Log in <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
@@ -210,7 +209,7 @@ export default function Example() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-slate-900 hover:bg-slate-50"
                 >
                   {item.name}
                 </a>
@@ -239,30 +238,21 @@ export default function Example() {
           </div>
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-              <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-                <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
-                  Announcing our next round of funding.{' '}
-                  <a href="#" className="font-semibold text-white">
-                    <span aria-hidden="true" className="absolute inset-0" />
-                    Read more <span aria-hidden="true">&rarr;</span>
-                  </a>
-                </div>
-              </div>
               <div className="text-center">
-                <h1 className="text-balance text-5xl font-semibold tracking-tight text-white sm:text-7xl">
+                <h1 className="text-balance font-display text-5xl font-semibold tracking-tight text-white sm:text-7xl">
                 Bridging Innovation and Excellence
                 </h1>
-                <p className="mt-8 text-pretty text-lg font-medium text-gray-400 sm:text-xl/8">
+                <p className="mt-8 text-pretty text-lg text-slate-400 sm:text-xl/8">
                 We invest in and operate ventures that challenge norms, combining timeless quality with cutting-edge solutions.
                 </p>
                 <div className="mt-10 flex items-center justify-center gap-x-6">
                   <a
-                    href="#"
-                    className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
+                    href="#contactus"
+                    className="rounded-md bg-cyan-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-cyan-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400"
                   >
                     Contact Us
                   </a>
-                  <a href="#" className="text-sm/6 font-semibold text-white">
+                  <a href="#ourventures" className="text-sm/6 font-semibold text-white">
                   Explore Our Ventures <span aria-hidden="true">→</span>
                   </a>
                 </div>
@@ -282,23 +272,23 @@ export default function Example() {
             />
           </div>
         </div>
-        <div className="overflow-hidden bg-white py-24 sm:py-32">
+        <div className="overflow-hidden bg-white py-24 sm:py-32" id="aboutus">
       <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
         <div className="max-w-4xl">
-          <p className="text-base/7 font-semibold text-indigo-600">About Weybridge Ventures</p>
-          <h1 className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+          <p className="text-base/7 font-semibold text-cyan-600">About Weybridge Ventures</p>
+          <h1 className="mt-2 text-balance font-display text-pretty text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
           Creating a future where quality meets progress
           </h1>
          
         </div>
         <section className="mt-20 grid grid-cols-1 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-16">
           <div className="lg:pr-8 space-y-8">
-            <h2 className="text-pretty text-2xl font-semibold tracking-tight text-gray-900">Our vision</h2>
-            <p className="mt-6 text-base/7 text-gray-600">
+            <h2 className="text-pretty text-2xl font-semibold tracking-tight text-slate-900">Our vision</h2>
+            <p className="mt-6 text-base/7 text-slate-600">
             Weybridge Ventures envisions a world where timeless quality and forward-thinking innovation work hand in hand. By combining British leadership, strategic expertise, and a commitment to progress, we build ventures that challenge norms, create value, and drive meaningful change across industries.
             </p>
-            <h2 className="text-pretty text-2xl font-semibold tracking-tight text-gray-900">Our mission</h2>
-            <p className="mt-6 text-base/7 text-gray-600">
+            <h2 className="text-pretty text-2xl font-semibold tracking-tight text-slate-900">Our mission</h2>
+            <p className="mt-6 text-base/7 text-slate-600">
             We create and invest in technology, design, and strategic ventures that solve real-world challenges. Guided by rational thinking, integrity, and efficiency, we develop solutions that are effective, human-centered, and future-proof—ensuring quality and progress go hand in hand.</p>
           </div>
           <div className="pt-16 lg:row-span-2 lg:-mr-16 xl:mr-auto">
@@ -337,14 +327,14 @@ export default function Example() {
         </section>
       </div>
     </div>
-    <div className="bg-white py-24 sm:py-32">
+    <div className="bg-slate-200 py-24 sm:py-32" id="ourventures">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
-          <h2 className="text-base/7 font-semibold text-indigo-600">Deploy faster</h2>
-          <p className="mt-2 text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl lg:text-balance">
-          Our Ventures & Partnerships
+          <h2 className="text-base/7 font-semibold text-cyan-600">Our Ventures & Partnerships</h2>
+          <p className="mt-2 font-display text-pretty text-4xl font-semibold tracking-tight text-slate-800 sm:text-5xl lg:text-balance">
+          Bridging Innovation & Expertise
           </p>
-          <p className="mt-6 text-lg/8 text-gray-600">
+          <p className="mt-6 text-lg/8 text-slate-600">
           Our subsidiaries and partnerships operate across multiple industries, each delivering cutting-edge solutions with a focus on real-world impact.
           </p>
         </div>
@@ -352,15 +342,15 @@ export default function Example() {
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
             {features.map((feature) => (
               <div key={feature.name} className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base/7 font-semibold text-gray-900">
-                  <feature.icon aria-hidden="true" className="size-5 flex-none text-indigo-600" />
+                <dt className="flex items-center gap-x-3 text-base/7 font-semibold text-slate-900">
+                  <feature.icon aria-hidden="true" className="size-5 flex-none text-cyan-600" />
                   {feature.name}
                 </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base/7 text-gray-600 space-y-2">
+                <dd className="mt-4 flex flex-auto flex-col text-base/7 text-slate-600 space-y-2">
                   <p className="flex-auto font-semibold">{feature.intro}</p>
                   <p className="flex-auto text-sm">{feature.description}</p>
                   <p className="mt-6">
-                    <a href={feature.href} target='_blank' className="text-sm/6 font-semibold text-indigo-600">
+                    <a href={feature.href} target='_blank' className="text-sm/6 font-semibold text-cyan-600">
                       Learn more <span aria-hidden="true">→</span>
                     </a>
                   </p>
@@ -371,18 +361,22 @@ export default function Example() {
         </div>
       </div>
     </div>
-    <div className="overflow-hidden bg-white py-32">
+    <div className="overflow-hidden bg-white py-32" id="contactus">
       <div className="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:max-w-none lg:min-w-full lg:flex-none lg:gap-y-8">
           <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
-            <h2 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">Let’s Build the Future Together</h2>
-            <p className="mt-6 text-xl/8 text-gray-600">
+            
+            <h2 className="text-base/7 font-semibold text-cyan-600">Contact us</h2>
+          <p className="mt-2 font-display text-pretty text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-balance">
+          Let’s Build the Future Together
+          </p>
+            <p className="mt-6 text-xl/8 text-slate-600">
             We partner with forward-thinking businesses to create lasting impact through innovation and strategy. Whether you’re interested in a collaboration, investment, or learning more about our ventures, we’d love to hear from you.
             </p>
             <div className="mt-10 flex">
               <a
                 href="#"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="rounded-md bg-cyan-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-cyan-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
               >
                 Contact Us <span aria-hidden="true">&rarr;</span>
               </a>
@@ -393,7 +387,7 @@ export default function Example() {
               <img
                 alt=""
                 src="https://images.unsplash.com/photo-1670272502246-768d249768ca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1152&q=80"
-                className="aspect-7/5 w-[37rem] max-w-none rounded-2xl bg-gray-50 object-cover"
+                className="aspect-7/5 w-[37rem] max-w-none rounded-2xl bg-slate-50 object-cover"
               />
             </div>
             <div className="contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:w-[37rem] lg:items-start lg:justify-end lg:gap-x-8">
@@ -401,21 +395,21 @@ export default function Example() {
                 <img
                   alt=""
                   src="https://images.unsplash.com/photo-1605656816944-971cd5c1407f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"
-                  className="aspect-4/3 w-[24rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover"
+                  className="aspect-4/3 w-[24rem] max-w-none flex-none rounded-2xl bg-slate-50 object-cover"
                 />
               </div>
               <div className="flex w-96 flex-auto justify-end lg:w-auto lg:flex-none">
                 <img
                   alt=""
                   src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1152&h=842&q=80"
-                  className="aspect-7/5 w-[37rem] max-w-none flex-none rounded-2xl bg-gray-50 object-cover"
+                  className="aspect-7/5 w-[37rem] max-w-none flex-none rounded-2xl bg-slate-50 object-cover"
                 />
               </div>
               <div className="hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none">
                 <img
                   alt=""
                   src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"
-                  className="aspect-4/3 w-[24rem] max-w-none rounded-2xl bg-gray-50 object-cover"
+                  className="aspect-4/3 w-[24rem] max-w-none rounded-2xl bg-slate-50 object-cover"
                 />
               </div>
             </div>
@@ -423,24 +417,24 @@ export default function Example() {
         </div>
       </div>
     </div>
-    <footer className="bg-gray-900">
+    <footer className="bg-slate-600">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
         <nav aria-label="Footer" className="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6">
           {footerNavigation.main.map((item) => (
-            <a key={item.name} href={item.href} className="text-gray-400 hover:text-white">
+            <a key={item.name} href={item.href} className="text-slate-400 hover:text-white">
               {item.name}
             </a>
           ))}
         </nav>
         <div className="mt-16 flex justify-center gap-x-10">
           {footerNavigation.social.map((item) => (
-            <a key={item.name} href={item.href} className="text-gray-400 hover:text-gray-300">
+            <a key={item.name} href={item.href} className="text-slate-400 hover:text-slate-300">
               <span className="sr-only">{item.name}</span>
               <item.icon aria-hidden="true" className="size-6" />
             </a>
           ))}
         </div>
-        <p className="mt-10 text-center text-sm/6 text-gray-400">&copy; 2024 Your Company, Inc. All rights reserved.</p>
+        <p className="mt-10 text-center text-sm/6 text-slate-400">&copy; 2025 Weybridge Ventures FZE LLC. All rights reserved.</p>
       </div>
     </footer>
     </div>

@@ -1,8 +1,15 @@
+@import url("https://use.typekit.net/eed7vck.css");
 @import "tailwindcss";
+
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+@theme {
+  --font-sans: "proxima-nova", sans-serif; 
+  --font-display: "ivypresto-display", sans-serif; 
 }
 
 @theme inline {
