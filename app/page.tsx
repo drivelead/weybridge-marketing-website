@@ -5,7 +5,6 @@ import Head from 'next/head'
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { ArrowPathIcon, CloudArrowUpIcon, LockClosedIcon } from '@heroicons/react/20/solid'
 
 const navigation = [
   { name: 'About Us', href: '#aboutus' },
@@ -20,7 +19,6 @@ const ventures = [
     description:
       'Empowering automotive businesses with advanced e-commerce and digital sales solutions.',
     href: 'https://autolead.digital',
-    icon: CloudArrowUpIcon,
     logo: '/logos/AUTOLEAD-BLACK.svg',
   },
   {
@@ -29,7 +27,6 @@ const ventures = [
     description:
       'Custom-built software, web development, and business technology solutions that work.',
     href: 'https://drivelead.co.uk',
-    icon: LockClosedIcon,
     logo: '/logos/DRIVELEAD-BLACK.svg',
   },
   {
@@ -38,7 +35,6 @@ const ventures = [
     description:
       'Where creativity meets strategy—crafting exceptional brands, visual identities, and business positioning.',
     href: 'https://weshape.london',
-    icon: ArrowPathIcon,
     logo: '/logos/WESHAPE-BLACK.svg',
   },
   {
@@ -47,7 +43,6 @@ const ventures = [
     description:
     'Driving digital transformation and innovation in Saudi Arabia through strategic collaborations and tech solutions.',
     href: 'https://saudiat.sa',
-    icon: ArrowPathIcon,
     logo: '/logos/SAT-BLACK.svg',
   },
   {
@@ -56,7 +51,6 @@ const ventures = [
     description:
     'Strategic advisory and cutting-edge solutions for global industries, bridging the gap between technology and business transformation.',
     href: 'https://www.lofnheim.com',
-    icon: ArrowPathIcon,
     logo: '/logos/ŁOFNHEIM-BLACK.svg',
   },
   {
@@ -65,7 +59,6 @@ const ventures = [
     description:
       'Bringing reality to the digital world through high-end simulation hardware and immersive software.',
     href: 'https://falconsim.pro',
-    icon: ArrowPathIcon,
     logo: '/logos/FALCONSIM-BLACK.svg',
   },
 ]
@@ -177,7 +170,7 @@ export default function Home() {
       <div className="relative isolate overflow-hidden pt-14 font-sans">
           <img
             alt=""
-            src="https://images.unsplash.com/photo-1615230686342-7bc64411a1a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
+            src="https://images.unsplash.com/photo-1615230686342-7bc64411a1a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format"
             className="absolute inset-0 -z-10 size-full object-cover"
           />
           <div
@@ -189,27 +182,22 @@ export default function Home() {
                 clipPath:
                   'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
               }}
-              className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+              className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-amber-300 to-amber-600 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
             />
           </div>
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
               <div className="text-center">
-                <h1 className="text-balance font-display text-5xl font-semibold tracking-tight text-white sm:text-7xl">
+                <h1 className="text-balance font-display text-5xl font-semibold tracking-tight text-slate-50 sm:text-7xl">
                 Bridging Innovation and Excellence
                 </h1>
-                <p className="mt-8 text-pretty text-lg text-slate-400 sm:text-xl/8">
+                <p className="mt-8 text-pretty text-lg text-amber-100 sm:text-xl/8">
                 We invest in and operate ventures that challenge norms, combining timeless quality with cutting-edge solutions.
                 </p>
                 <div className="mt-10 flex items-center justify-center gap-x-6">
-                  <a
-                    href="#contactus"
-                    className="rounded-md bg-cyan-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-cyan-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400"
-                  >
-                    Contact Us
-                  </a>
-                  <a href="#ourventures" className="text-sm/6 font-semibold text-white">
-                  Explore Our Ventures <span aria-hidden="true">→</span>
+                  
+                  <a href="#aboutus" className="text-sm/6 font-semibold text-white">
+                  Discover Weybridge Ventures <span aria-hidden="true">→</span>
                   </a>
                 </div>
               </div>
