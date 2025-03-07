@@ -13,7 +13,7 @@ const navigation = [
   { name: 'Contact', href: '#contactus' },
 ]
 
-const features = [
+const ventures = [
   {
     name: 'AutoLEAD (UAE)',
     intro: 'Digital Solutions for Auto Retail',
@@ -21,6 +21,7 @@ const features = [
       'Empowering automotive businesses with advanced e-commerce and digital sales solutions.',
     href: 'https://autolead.digital',
     icon: CloudArrowUpIcon,
+    logo: '/logos/AUTOLEAD-BLACK.svg',
   },
   {
     name: 'DriveLEAD (UK)',
@@ -29,6 +30,7 @@ const features = [
       'Custom-built software, web development, and business technology solutions that work.',
     href: 'https://drivelead.co.uk',
     icon: LockClosedIcon,
+    logo: '/logos/DRIVELEAD-BLACK.svg',
   },
   {
     name: 'We Shape (UK)',
@@ -37,6 +39,7 @@ const features = [
       'Where creativity meets strategy—crafting exceptional brands, visual identities, and business positioning.',
     href: 'https://weshape.london',
     icon: ArrowPathIcon,
+    logo: '/logos/WESHAPE-BLACK.svg',
   },
   {
     name: 'Saudi Advanced Technologies (KSA)',
@@ -45,6 +48,7 @@ const features = [
     'Driving digital transformation and innovation in Saudi Arabia through strategic collaborations and tech solutions.',
     href: 'https://saudiat.sa',
     icon: ArrowPathIcon,
+    logo: '/logos/SAT-BLACK.svg',
   },
   {
     name: 'ŁOFNHEIM (UAE)',
@@ -53,6 +57,7 @@ const features = [
     'Strategic advisory and cutting-edge solutions for global industries, bridging the gap between technology and business transformation.',
     href: 'https://www.lofnheim.com',
     icon: ArrowPathIcon,
+    logo: '/logos/ŁOFNHEIM-BLACK.svg',
   },
   {
     name: 'FalconSim (UAE)',
@@ -61,6 +66,7 @@ const features = [
       'Bringing reality to the digital world through high-end simulation hardware and immersive software.',
     href: 'https://falconsim.pro',
     icon: ArrowPathIcon,
+    logo: '/logos/FALCONSIM-BLACK.svg',
   },
 ]
 
@@ -74,7 +80,7 @@ const footerNavigation = {
   ],
 }
 
-export default function Example() {
+export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -91,7 +97,7 @@ export default function Example() {
         <meta name="twitter:description" content="Weybridge Ventures is a British-UAE holding company investing in technology, design, and strategic ventures." />
         <meta name="twitter:image" content="https://www.weybridge.ae/og-image.jpg" />
       </Head>
-      <header className="bg-white">
+      <header className="bg-white font-sans">
         <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
           <div className="flex flex-1">
             <div className="hidden lg:flex lg:gap-x-12">
@@ -143,9 +149,9 @@ export default function Example() {
               <a href="#" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
                 <img
-                  alt=""
-                  src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                  className="h-8 w-auto"
+                  alt="Weybridge Ventures Logo"
+              src="weybridge-logo.svg"
+                  className="h-10 md:h-12 lg:h-14 w-auto"
                 />
               </a>
               <div className="flex flex-1 justify-end">
@@ -168,7 +174,7 @@ export default function Example() {
           </DialogPanel>
         </Dialog>
       </header>
-      <div className="relative isolate overflow-hidden pt-14">
+      <div className="relative isolate overflow-hidden pt-14 font-sans">
           <img
             alt=""
             src="https://images.unsplash.com/photo-1615230686342-7bc64411a1a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2830&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
@@ -233,11 +239,11 @@ export default function Example() {
         </div>
         <section className="mt-20 grid grid-cols-1 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-16">
           <div className="lg:pr-8 space-y-8">
-            <h2 className="text-pretty text-2xl font-semibold tracking-tight text-slate-900">Our vision</h2>
+            <h2 className="text-pretty text-2xl font-semibold tracking-tight text-slate-900">Our Vision</h2>
             <p className="mt-6 text-base/7 text-slate-600">
             Weybridge Ventures envisions a world where timeless quality and forward-thinking innovation work hand in hand. By combining British leadership, strategic expertise, and a commitment to progress, we build ventures that challenge norms, create value, and drive meaningful change across industries.
             </p>
-            <h2 className="text-pretty text-2xl font-semibold tracking-tight text-slate-900">Our mission</h2>
+            <h2 className="text-pretty text-2xl font-semibold tracking-tight text-slate-900">Our Mission</h2>
             <p className="mt-6 text-base/7 text-slate-600">
             We create and invest in technology, design, and strategic ventures that solve real-world challenges. Guided by rational thinking, integrity, and efficiency, we develop solutions that are effective, human-centered, and future-proof—ensuring quality and progress go hand in hand.</p>
           </div>
@@ -277,7 +283,7 @@ export default function Example() {
         </section>
       </div>
     </div>
-    <div className="bg-slate-200 py-24 sm:py-32" id="ourventures">
+    <div className=" font-sans bg-slate-200 py-24 sm:py-32" id="ourventures">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:text-center">
           <h2 className="text-base/7 font-semibold text-cyan-600">Our Ventures & Partnerships</h2>
@@ -290,17 +296,23 @@ export default function Example() {
         </div>
         <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
           <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-            {features.map((feature) => (
-              <div key={feature.name} className="flex flex-col">
-                <dt className="flex items-center gap-x-3 text-base/7 font-semibold text-slate-900">
-                  <feature.icon aria-hidden="true" className="size-5 flex-none text-cyan-600" />
-                  {feature.name}
+            {ventures.map((venture) => (
+              <div key={venture.name} className="flex flex-col">
+                <div className="mb-5">
+                  <img
+                    alt={venture.name}
+                    src={venture.logo}
+                    className="w-full aspect-video mx-auto bg-white rounded border border-slate-300 p-10"
+                  />
+                </div>
+                <dt className="text-base/7 font-semibold text-slate-900">
+                  {venture.name}
                 </dt>
-                <dd className="mt-4 flex flex-auto flex-col text-base/7 text-slate-600 space-y-2">
-                  <p className="flex-auto font-semibold">{feature.intro}</p>
-                  <p className="flex-auto text-sm">{feature.description}</p>
+                <dd className="flex flex-auto flex-col text-base/7 text-slate-600 space-y-2">
+                  <p className="flex-auto font-semibold">{venture.intro}</p>
+                  <p className="flex-auto text-sm">{venture.description}</p>
                   <p className="mt-6">
-                    <a href={feature.href} target='_blank' className="text-sm/6 font-semibold text-cyan-600">
+                    <a href={venture.href} target='_blank' className="text-sm/6 font-semibold text-cyan-600">
                       Learn more <span aria-hidden="true">→</span>
                     </a>
                   </p>
@@ -311,7 +323,7 @@ export default function Example() {
         </div>
       </div>
     </div>
-    <div className="overflow-hidden bg-white py-32" id="contactus">
+    <div className="font-sans overflow-hidden bg-white py-32" id="contactus">
       <div className="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:max-w-none lg:min-w-full lg:flex-none lg:gap-y-8">
           <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
@@ -367,7 +379,7 @@ export default function Example() {
         </div>
       </div>
     </div>
-    <footer className="bg-slate-600">
+    <footer className="font-sans bg-slate-600">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
         <nav aria-label="Footer" className="flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6">
           {footerNavigation.main.map((item) => (
