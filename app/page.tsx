@@ -1,5 +1,7 @@
 'use client'
 
+import Head from 'next/head'
+
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -76,8 +78,19 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div>
-
+    <>
+        <Head>
+        <title>Weybridge Ventures | Bridging Innovation & Excellence</title>
+        <meta name="description" content="Weybridge Ventures is a British-UAE holding company investing in technology, design, and strategic ventures." />
+        <meta property="og:title" content="Weybridge Ventures | Bridging Innovation & Excellence" />
+        <meta property="og:description" content="Weybridge Ventures is a British-UAE holding company investing in technology, design, and strategic ventures." />
+        <meta property="og:image" content="https://www.weybridge.ae/og-image.jpg" />
+        <meta property="og:url" content="https://www.weybridge.ae" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Weybridge Ventures | Bridging Innovation & Excellence" />
+        <meta name="twitter:description" content="Weybridge Ventures is a British-UAE holding company investing in technology, design, and strategic ventures." />
+        <meta name="twitter:image" content="https://www.weybridge.ae/og-image.jpg" />
+      </Head>
       <header className="bg-white">
         <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
           <div className="flex flex-1">
@@ -367,6 +380,6 @@ export default function Example() {
         <p className="uppercase mt-10 text-center text-xs/6 text-slate-400">&copy; 2025 Weybridge Ventures FZE LLC. All rights reserved.</p>
       </div>
     </footer>
-    </div>
+    </>
   )
 }
