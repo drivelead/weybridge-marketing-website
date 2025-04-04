@@ -234,7 +234,7 @@ export default function Home() {
       </section>
 
       <section
-        className="overflow-hidden bg-white pb-24 sm:pb-32 pt-8"
+        className="overflow-hidden bg-gradient-to-t from-slate-200 via-white via-20% to-white pb-24 sm:pb-32 pt-8"
         id="aboutus">
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
           <div className="max-w-4xl">
@@ -307,7 +307,9 @@ export default function Home() {
           </section>
         </div>
       </section>
-      <section className="bg-slate-200 py-24 sm:py-32" id="ourventures">
+      <section
+        className="bg-gradient-to-t from-white via-slate-200 via-20% to-slate-200 pb-24 sm:pb-32"
+        id="ourventures">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
             <h2 className="text-base/7 font-semibold text-cyan-600">
@@ -354,7 +356,9 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="overflow-hidden bg-white py-32" id="contactus">
+      <section
+        className="overflow-hidden bg-white pb-24 sm:pb-32 pt-8"
+        id="contactus">
         <div className="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:max-w-none lg:min-w-full lg:flex-none lg:gap-y-8">
             <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
