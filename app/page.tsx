@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 const navigation = [
   { name: "About Us", href: "#aboutus" },
@@ -135,7 +136,7 @@ export default function Home() {
               </button>
             </div>
           </div>
-          <a
+          <Link
             href="/"
             className="uppercase text-black flex flex-col items-center justify-center -mt-2">
             <p className="font-display text-4xl lg:text-5xl -mb-1 text-white">
@@ -144,7 +145,7 @@ export default function Home() {
             <p className="tracking-[1em] text-white">
               Venture<span className="tracking-[0]">s</span>
             </p>
-          </a>
+          </Link>
           <div className="flex flex-1 justify-end lg:gap-x-12">
             <a
               href="#contactus"
@@ -170,14 +171,16 @@ export default function Home() {
                   <XMarkIcon aria-hidden="true" className="size-6" />
                 </button>
               </div>
-              <a href="#" className="-m-1.5 p-1.5">
-                <span className="sr-only">Your Company</span>
-                <img
-                  alt="Weybridge Ventures Logo"
-                  src="weybridge-logo.svg"
-                  className="h-10 md:h-12 lg:h-14 w-auto"
-                />
-              </a>
+              <Link
+                href="/"
+                className="uppercase text-black flex flex-col items-center justify-center -mt-2">
+                <p className="font-display text-4xl lg:text-5xl -mb-1 text-white">
+                  Weybridge
+                </p>
+                <p className="tracking-[1em] text-white">
+                  Venture<span className="tracking-[0]">s</span>
+                </p>
+              </Link>
               <div className="flex flex-1 justify-end">
                 <a href="#" className="text-sm/6 font-semibold text-text-white">
                   Log in <span aria-hidden="true">&rarr;</span>
