@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${lexend.variable}`}>
+    <html lang="en" className={`${lexend.variable} bg-cyan-600`}>
       <Head>
         <meta name="apple-mobile-web-app-title" content="Weybridge" />
       </Head>

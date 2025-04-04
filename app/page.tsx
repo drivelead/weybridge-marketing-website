@@ -111,7 +111,7 @@ export default function Home() {
           content="https://www.weybridge.ae/og-image.jpg"
         />
       </Head>
-      <header className="bg-gradient-to-b from-cyan-500 to-cyan-500/0 h-[6.5rem] absolute top-0 left-0 w-full z-50 transition-all duration-300">
+      <header className="bg-gradient-to-b from-cyan-600 to-cyan-500/0 h-[6.5rem] absolute top-0 left-0 w-full z-50 transition-all duration-300">
         <nav
           aria-label="Global"
           className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
