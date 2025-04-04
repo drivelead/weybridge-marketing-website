@@ -1,55 +1,54 @@
 "use client";
 
 import Head from "next/head";
-
+import Image from "next/image";
 import { useState } from "react";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
   { name: "About Us", href: "#aboutus" },
-  { name: "Our Ventures", href: "#ourventures" },
-  { name: "Contact", href: "#contactus" },
+  { name: "Ventures", href: "#ourventures" },
 ];
 
 const ventures = [
   {
+    name: "DriveLEAD (UK)",
+    intro: "Strategic Technology, Delivered Intelligently",
+    description:
+      "Technology solutions that solve real business problems—built with precision, scalability, and long-term value in mind.",
+    href: "https://drivelead.co.uk",
+    logo: "/logos/drive-lead-logo.svg",
+  },
+  {
     name: "AutoLEAD (UAE)",
     intro: "Digital Solutions for Auto Retail",
     description:
-      "Empowering automotive businesses with advanced e-commerce and digital sales solutions.",
+      "Powering vehicle sales online—integrating inventory, financing, lead management, and omni-channel experiences.",
     href: "https://autolead.digital",
-    logo: "/logos/AUTOLEAD-BLACK.svg",
+    logo: "/logos/auto-lead-logo.svg",
   },
   {
-    name: "DriveLEAD (UK)",
-    intro: "Development & Digital Solutions",
+    name: "FitLEAD",
+    intro: "Automation for Modern Coaching",
     description:
-      "Custom-built software, web development, and business technology solutions that work.",
-    href: "https://drivelead.co.uk",
-    logo: "/logos/DRIVELEAD-BLACK.svg",
-  },
-  {
-    name: "We Shape (UK)",
-    intro: "Design, Branding & Strategy",
-    description:
-      "Where creativity meets strategy—crafting exceptional brands, visual identities, and business positioning.",
+      "Transforming personal training into a scalable, high-margin business through AI and automated client engagement.",
     href: "https://weshape.london",
-    logo: "/logos/WESHAPE-BLACK.svg",
+    logo: "/logos/fit-lead-logo.svg",
   },
   {
     name: "Saudi Advanced Technologies (KSA)",
-    intro: "Our Strategic Saudi Partner",
+    intro: "National-Scale Technology Partner",
     description:
-      "Driving digital transformation and innovation in Saudi Arabia through strategic collaborations and tech solutions.",
+      "Strategic partner delivering technology for enterprise and government that amplify vision, scale, and ambition.",
     href: "https://saudiat.sa",
     logo: "/logos/SAT-BLACK.svg",
   },
   {
     name: "ŁOFNHEIM (UAE)",
-    intro: "Innovation & Strategic Advisory Partner",
+    intro: "Strategic Foresight & Innovation Leadership",
     description:
-      "Strategic advisory and cutting-edge solutions for global industries, bridging the gap between technology and business transformation.",
+      "A global innovation partner supporting transformation through foresight, product strategy, and deep market understanding.",
     href: "https://www.lofnheim.com",
     logo: "/logos/ŁOFNHEIM-BLACK.svg",
   },
@@ -57,7 +56,7 @@ const ventures = [
     name: "FalconSim (UAE)",
     intro: "Turnkey Simulation Solutions",
     description:
-      "Bringing reality to the digital world through high-end simulation hardware and immersive software.",
+      "Professional-grade simulation platforms for driving and flight—built for realism, reliability, and commercial deployment.",
     href: "https://falconsim.pro",
     logo: "/logos/FALCONSIM-BLACK.svg",
   },
@@ -111,7 +110,7 @@ export default function Home() {
           content="https://www.weybridge.ae/og-image.jpg"
         />
       </Head>
-      <header className="bg-white font-sans">
+      <header className="bg-gradient-to-b from-cyan-500 to-cyan-500/0 h-[6.5rem] absolute top-0 left-0 w-full z-50 transition-all duration-300">
         <nav
           aria-label="Global"
           className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
@@ -121,7 +120,7 @@ export default function Home() {
                 <a
                   key={item.name}
                   href={item.href}
-                  className="text-sm/6 font-semibold text-slate-900">
+                  className="text-md text-white font-medium hover:underline hover:underline-offset-2 uppercase">
                   {item.name}
                 </a>
               ))}
@@ -130,26 +129,28 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
-                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700">
+                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5">
                 <span className="sr-only">Open main menu</span>
                 <Bars3Icon aria-hidden="true" className="size-6" />
               </button>
             </div>
           </div>
-          <a href="#" className="">
-            <span className="sr-only">Weybridge Ventures</span>
-            <img
-              alt="Weybridge Ventures Logo"
-              src="weybridge-logo.svg"
-              className="h-10 md:h-12 lg:h-14 w-auto"
-            />
+          <a
+            href="/"
+            className="uppercase text-black flex flex-col items-center justify-center -mt-2">
+            <p className="font-display text-4xl lg:text-5xl -mb-1 text-white">
+              Weybridge
+            </p>
+            <p className="tracking-[1em] text-white">
+              Venture<span className="tracking-[0]">s</span>
+            </p>
           </a>
-          <div className="flex flex-1 justify-end">
+          <div className="flex flex-1 justify-end lg:gap-x-12">
             <a
-              href="https://www.notion.so/Weybridge-Ventures-Teamspace-1af76ddeac1d8065847cf375671c21c4"
+              href="#contactus"
               target="_blank"
-              className="text-sm/6 font-semibold text-slate-900">
-              Log in <span aria-hidden="true">&rarr;</span>
+              className="text-md text-white font-medium hover:underline hover:underline-offset-2 uppercase">
+              Contact<span className="hidden sm:inline"> Us</span>
             </a>
           </div>
         </nav>
@@ -158,13 +159,13 @@ export default function Home() {
           onClose={setMobileMenuOpen}
           className="lg:hidden">
           <div className="fixed inset-0 z-10" />
-          <DialogPanel className="fixed inset-y-0 left-0 z-10 w-full overflow-y-auto bg-white px-6 py-6">
+          <DialogPanel className="fixed inset-y-0 left-0 z-10 w-full overflow-y-auto bg-cyan-500 text-white px-6 py-6">
             <div className="flex items-center justify-between">
               <div className="flex flex-1">
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="-m-2.5 rounded-md p-2.5 text-slate-700">
+                  className="-m-2.5 rounded-md p-2.5 text-white">
                   <span className="sr-only">Close menu</span>
                   <XMarkIcon aria-hidden="true" className="size-6" />
                 </button>
@@ -178,7 +179,7 @@ export default function Home() {
                 />
               </a>
               <div className="flex flex-1 justify-end">
-                <a href="#" className="text-sm/6 font-semibold text-slate-900">
+                <a href="#" className="text-sm/6 font-semibold text-text-white">
                   Log in <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
@@ -196,32 +197,29 @@ export default function Home() {
           </DialogPanel>
         </Dialog>
       </header>
-      <div className="relative isolate overflow-hidden pt-14 font-sans">
-        <img
-          alt=""
-          src="https://images.unsplash.com/photo-1615230686342-7bc64411a1a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format"
-          className="absolute inset-0 -z-10 size-full object-cover"
-        />
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-          <div
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-amber-300 to-amber-600 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-          />
-        </div>
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="relative isolate overflow-hidden h-dvh">
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/0 via-25% h-full" />
+        {/* 🔁 Video Background */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 -z-10 w-full h-full object-cover">
+          <source src="/videos/hero-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* 🌟 Hero Content */}
+        <div className="flex flex-col items-center justify-center h-full pt-24 bg-cyan-600/60">
           <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
-            <div className="text-center">
-              <h1 className="text-balance font-display text-5xl font-semibold tracking-tight text-slate-50 sm:text-7xl">
+            <div className="text-center px-4 lg:px-8">
+              <h1 className="text-balance font-display text-5xl font-semibold tracking-tight text-white sm:text-7xl drop-shadow-sm">
                 Bridging Innovation and Excellence
               </h1>
-              <p className="mt-8 text-pretty text-lg text-amber-100 sm:text-xl/8">
-                We invest in and operate ventures that challenge norms,
-                combining timeless quality with cutting-edge solutions.
+              <p className="mt-8 text-balance text-lg text-white sm:text-xl/7">
+                We invest in and manage ventures that defy conventions,
+                seamlessly blending enduring quality with modern solutions.
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <a
@@ -233,73 +231,74 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]">
-          <div
-            style={{
-              clipPath:
-                "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-            }}
-            className="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-20 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]"
-          />
-        </div>
-      </div>
-      <div className="overflow-hidden bg-white py-24 sm:py-32" id="aboutus">
+      </section>
+
+      <section
+        className="overflow-hidden bg-white pb-24 sm:pb-32 pt-8"
+        id="aboutus">
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
           <div className="max-w-4xl">
             <p className="text-base/7 font-semibold text-cyan-600">
               About Weybridge Ventures
             </p>
-            <h1 className="mt-2 text-balance font-display text-pretty text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl">
-              Creating a future where quality meets progress
+            <h1 className="mt-2 text-balance font-display text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl max-w-xl">
+              Doing things properly, while moving forward.
             </h1>
           </div>
           <section className="mt-20 grid grid-cols-1 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-16">
             <div className="lg:pr-8 space-y-8">
-              <h2 className="text-pretty text-2xl font-semibold tracking-tight text-slate-900">
-                Our Vision
-              </h2>
-              <p className="mt-6 text-base/7 text-slate-600">
-                Weybridge Ventures envisions a world where timeless quality and
-                forward-thinking innovation work hand in hand.
+              <p className="text-base/7 text-slate-600">
+                At Weybridge Ventures, we combine timeless principles with
+                modern thinking to build businesses that last. With British
+                leadership and hands-on involvement, we invest in ventures that
+                challenge outdated ideas, create real value, and move industries
+                forward.
               </p>
-              <h2 className="text-pretty text-2xl font-semibold tracking-tight text-slate-900">
+              <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
                 Our Mission
               </h2>
-              <p className="mt-6 text-base/7 text-slate-600">
+              <p className="text-base/7 text-slate-600">
                 Guided by rational thinking, integrity, and efficiency, we
-                develop solutions that are effective, human-centred, and
-                future-proof ensuring quality and progress go hand in hand.
+                develop solutions that are effective, human centred, and future
+                proof. We create and invest in technology, design, and strategic
+                ventures that solve real world challenges.
               </p>
             </div>
             <div className="pt-16 lg:row-span-2 lg:-mr-16 xl:mr-auto">
               <div className="-mx-8 grid grid-cols-2 gap-4 sm:-mx-16 sm:grid-cols-4 lg:mx-0 lg:grid-cols-2 lg:gap-4 xl:gap-8">
                 <div className="aspect-square overflow-hidden rounded-xl shadow-xl outline outline-1 -outline-offset-1 outline-black/10">
-                  <img
-                    alt=""
-                    src="https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?&auto=format&fit=crop&crop=center&w=560&h=560&q=90"
+                  <Image
+                    alt="Lindsay catching up on messages before starting her workday."
+                    src="/photos/lindsay-using-smartphone-at-home.jpeg"
+                    width={1280}
+                    height={1024}
                     className="block size-full object-cover"
                   />
                 </div>
                 <div className="-mt-8 aspect-square overflow-hidden rounded-xl shadow-xl outline outline-1 -outline-offset-1 outline-black/10 lg:-mt-40">
-                  <img
-                    alt=""
-                    src="https://images.unsplash.com/photo-1557804506-669a67965ba0?&auto=format&fit=crop&crop=left&w=560&h=560&q=90"
+                  <Image
+                    alt="Business professional walking confidently through a modern glass corridor."
+                    src="/photos/devon-walking-through-glass-corridor.jpeg"
+                    width={1280}
+                    height={1024}
                     className="block size-full object-cover"
                   />
                 </div>
                 <div className="aspect-square overflow-hidden rounded-xl shadow-xl outline outline-1 -outline-offset-1 outline-black/10">
-                  <img
-                    alt=""
-                    src="https://images.unsplash.com/photo-1559136555-9303baea8ebd?&auto=format&fit=crop&crop=left&w=560&h=560&q=90"
+                  <Image
+                    alt="Two colleagues working together on a laptop in a casual office environment."
+                    src="/photos/jennifer-and-andy-collaborating-over-laptop.jpeg"
+                    width={1280}
+                    height={1024}
                     className="block size-full object-cover"
                   />
                 </div>
                 <div className="-mt-8 aspect-square overflow-hidden rounded-xl shadow-xl outline outline-1 -outline-offset-1 outline-black/10 lg:-mt-40">
-                  <img
-                    alt=""
-                    src="https://images.unsplash.com/photo-1598257006458-087169a1f08d?&auto=format&fit=crop&crop=center&w=560&h=560&q=90"
+                  <Image
+                    alt="Man and woman smiling while discussing something on a laptop."
+                    width={1280}
+                    height={1024}
+                    src="/photos/thomas-and-nina-discussing-project-plan.jpeg"
                     className="block size-full object-cover"
                   />
                 </div>
@@ -307,8 +306,8 @@ export default function Home() {
             </div>
           </section>
         </div>
-      </div>
-      <div className=" font-sans bg-slate-200 py-24 sm:py-32" id="ourventures">
+      </section>
+      <section className="bg-slate-200 py-24 sm:py-32" id="ourventures">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
             <h2 className="text-base/7 font-semibold text-cyan-600">
@@ -318,8 +317,8 @@ export default function Home() {
               Bridging Innovation & Expertise
             </p>
             <p className="mt-6 text-lg/8 text-slate-600">
-              Our subsidiaries and partnerships deliver cutting-edge solutions
-              with a focus on real-world impact.
+              Our subsidiaries and partnerships provide advanced solutions
+              focused on tangible, real-world outcomes.
             </p>
             w
           </div>
@@ -354,8 +353,8 @@ export default function Home() {
             </dl>
           </div>
         </div>
-      </div>
-      <div className="font-sans overflow-hidden bg-white py-32" id="contactus">
+      </section>
+      <section className="overflow-hidden bg-white py-32" id="contactus">
         <div className="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:max-w-none lg:min-w-full lg:flex-none lg:gap-y-8">
             <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
@@ -365,11 +364,14 @@ export default function Home() {
               <p className="mt-2 font-display text-pretty text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-balance">
                 Let&apos;s Build the Future Together
               </p>
-              <p className="mt-6 text-xl/8 text-slate-600">
+              <p className="mt-6 text-lg/6 text-slate-600">
                 We partner with forward-thinking businesses to create lasting
-                impact through innovation and strategy. Whether you’re
-                interested in a collaboration, investment, or learning more
-                about our ventures, we’d love to hear from you.
+                impact through innovation and strategy.
+              </p>
+              <p className="mt-6 text-lg/6 text-slate-600">
+                Whether you&apos;re interested in a collaboration, investment,
+                or learning more about our ventures, we&apos;d love to hear from
+                you.
               </p>
               <div className="mt-10 flex">
                 <a
@@ -381,31 +383,39 @@ export default function Home() {
             </div>
             <div className="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents">
               <div className="w-0 flex-auto lg:ml-auto lg:w-auto lg:flex-none lg:self-end">
-                <img
-                  alt=""
-                  src="https://images.unsplash.com/photo-1670272502246-768d249768ca?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1152&q=80"
+                <Image
+                  alt="Man talking across a table during a one-on-one meeting."
+                  src="/photos/oliver-speaking-in-1on1-meeting.jpeg"
+                  width={1280}
+                  height={1024}
                   className="aspect-7/5 w-[37rem] max-w-none rounded-2xl bg-slate-50 object-cover"
                 />
               </div>
               <div className="contents lg:col-span-2 lg:col-end-2 lg:ml-auto lg:flex lg:w-[37rem] lg:items-start lg:justify-end lg:gap-x-8">
                 <div className="order-first flex w-64 flex-none justify-end self-end lg:w-auto">
-                  <img
-                    alt=""
-                    src="https://images.unsplash.com/photo-1605656816944-971cd5c1407f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"
+                  <Image
+                    alt="Three people seated at a table having a business discussion in a sunlit office."
+                    src="/photos/client-meeting-in-modern-office.jpeg"
+                    width={1280}
+                    height={1024}
                     className="aspect-4/3 w-[24rem] max-w-none flex-none rounded-2xl bg-slate-50 object-cover"
                   />
                 </div>
                 <div className="flex w-96 flex-auto justify-end lg:w-auto lg:flex-none">
-                  <img
-                    alt=""
-                    src="https://images.unsplash.com/photo-1568992687947-868a62a9f521?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1152&h=842&q=80"
+                  <Image
+                    alt="Woman standing and smiling with a tablet during an informal meeting."
+                    src="/photos/maya-holding-tablet-in-casual-meeting.jpeg"
+                    width={1280}
+                    height={1024}
                     className="aspect-7/5 w-[37rem] max-w-none flex-none rounded-2xl bg-slate-50 object-cover"
                   />
                 </div>
                 <div className="hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none">
-                  <img
-                    alt=""
-                    src="https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=768&h=604&q=80"
+                  <Image
+                    alt="Woman laughing during a video call, seated on a modern armchair."
+                    src="/photos/lindsay-laughing-during-video-call.jpeg"
+                    width={1280}
+                    height={1024}
                     className="aspect-4/3 w-[24rem] max-w-none rounded-2xl bg-slate-50 object-cover"
                   />
                 </div>
@@ -413,8 +423,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
-      <footer className="font-sans bg-slate-600">
+      </section>
+      <footer className="bg-slate-600">
         <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
           <nav
             aria-label="Footer"
