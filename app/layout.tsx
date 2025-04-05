@@ -28,7 +28,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="Weybridge" />
       </Head>
       <GoogleTagManager gtmId="G-6NBMDNFNHT" />
-      <body className="font-sans antialiased">{children}</body>
+      <body className="antialiased bg-cyan-600">{children}</body>
     </html>
   );
 }

@@ -139,10 +139,10 @@ export default function Home() {
           <Link
             href="/"
             className="uppercase text-black flex flex-col items-center justify-center -mt-2">
-            <p className="font-display text-4xl lg:text-5xl -mb-1 text-white">
+            <p className="font-display text-3xl lg:text-4xl text-white">
               Weybridge
             </p>
-            <p className="tracking-[1em] text-white">
+            <p className="text-sm tracking-[0.7em] lg:tracking-[1em] text-cyan-700 bg-white rounded-xs w-full text-center font-medium">
               Venture<span className="tracking-[0]">s</span>
             </p>
           </Link>
@@ -200,7 +200,7 @@ export default function Home() {
           </DialogPanel>
         </Dialog>
       </header>
-      <section className="relative isolate overflow-hidden h-dvh">
+      <section className="relative isolate h-dvh">
         <div className="absolute inset-0 bg-gradient-to-t from-white via-white/0 via-25% h-full" />
         {/* 🔁 Video Background */}
         <video
@@ -208,7 +208,7 @@ export default function Home() {
           loop
           muted
           playsInline
-          className="absolute inset-0 -z-10 w-full h-full object-cover">
+          className="fixed top-0 -z-50 w-screen h-dvh object-cover">
           <source src="/videos/hero-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -237,11 +237,11 @@ export default function Home() {
       </section>
 
       <section
-        className="overflow-hidden bg-gradient-to-t from-slate-200 via-white via-20% to-white pb-24 sm:pb-32 pt-8"
+        className="relative z-10 h-dvh overflow-hidden bg-gradient-to-t from-slate-200 via-white via-20% to-white pb-24 sm:pb-32 pt-8"
         id="aboutus">
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
           <div className="max-w-4xl">
-            <p className="text-base/7 font-semibold text-cyan-600">
+            <p className="text-base/7 font-medium tracking-wider text-cyan-600 uppercase">
               About Weybridge Ventures
             </p>
             <h1 className="mt-2 text-balance font-display text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl max-w-xl">
@@ -311,11 +311,11 @@ export default function Home() {
         </div>
       </section>
       <section
-        className="bg-gradient-to-t from-white via-slate-200 via-20% to-slate-200 pb-24 sm:pb-32"
+        className="relative bg-gradient-to-t from-white via-slate-200 via-20% to-slate-200 pb-24 sm:pb-32"
         id="ourventures">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-12">
           <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base/7 font-semibold text-cyan-600">
+            <h2 className="text-base/7 font-medium tracking-wider text-cyan-600 uppercase">
               Our Ventures & Partnerships
             </h2>
             <p className="mt-2 font-display text-pretty text-4xl font-semibold tracking-tight text-slate-800 sm:text-5xl lg:text-balance">
@@ -327,11 +327,11 @@ export default function Home() {
             </p>
             w
           </div>
-          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+          <div className="mx-auto mt-6 max-w-2xl sm:mt-8 lg:mt-12 lg:max-w-none">
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
               {ventures.map((venture) => (
                 <div key={venture.name} className="flex flex-col">
-                  <div className="mb-5">
+                  <div className="mb-4">
                     <img
                       alt={venture.name}
                       src={venture.logo}
@@ -360,12 +360,12 @@ export default function Home() {
         </div>
       </section>
       <section
-        className="overflow-hidden bg-white pb-24 sm:pb-32 pt-8"
+        className="relative overflow-hidden bg-white pb-24 sm:pb-32 pt-8"
         id="contactus">
         <div className="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:max-w-none lg:min-w-full lg:flex-none lg:gap-y-8">
             <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
-              <h2 className="text-base/7 font-semibold text-cyan-600">
+              <h2 className="text-base/7 font-medium tracking-wider text-cyan-600 uppercase">
                 Contact us
               </h2>
               <p className="mt-2 font-display text-pretty text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-balance">
@@ -431,7 +431,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <footer className="bg-slate-600">
+      <footer className="relative bg-slate-600 opacity-90">
         <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
           <nav
             aria-label="Footer"
