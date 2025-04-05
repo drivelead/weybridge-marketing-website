@@ -208,7 +208,7 @@ export default function Home() {
           loop
           muted
           playsInline
-          className="fixed top-0 -z-50 w-screen h-dvh object-cover">
+          className="absolute inset-0 -z-50 w-full h-full object-cover">
           <source src="/videos/hero-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -237,7 +237,7 @@ export default function Home() {
       </section>
 
       <section
-        className="relative z-10 h-dvh overflow-hidden bg-gradient-to-t from-slate-200 via-white via-20% to-white pb-24 sm:pb-32 pt-8"
+        className="overflow-hidden bg-gradient-to-t from-slate-200 to-white pb-24 sm:pb-32 pt-8"
         id="aboutus">
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
           <div className="max-w-4xl">
@@ -250,17 +250,19 @@ export default function Home() {
           </div>
           <section className="mt-20 grid grid-cols-1 lg:grid-cols-2 lg:gap-x-8 lg:gap-y-16">
             <div className="lg:pr-8 space-y-8">
-              <p className="text-base/7 text-slate-600">
+              <p className="text-base/7 text-slate-600 text-balance">
                 At Weybridge Ventures, we combine timeless principles with
-                modern thinking to build businesses that last. With British
-                leadership and hands-on involvement, we invest in ventures that
-                challenge outdated ideas, create real value, and move industries
-                forward.
+                modern thinking to build businesses that last.
+              </p>
+              <p className="text-base/7 text-slate-600 text-balance">
+                With British leadership and hands-on involvement, we invest in
+                ventures that challenge outdated ideas, create real value, and
+                move industries forward.
               </p>
               <h2 className="text-2xl font-semibold tracking-tight text-slate-900">
                 Our Mission
               </h2>
-              <p className="text-base/7 text-slate-600">
+              <p className="text-base/7 text-slate-600 text-balance">
                 Guided by rational thinking, integrity, and efficiency, we
                 develop solutions that are effective, human centred, and future
                 proof. We create and invest in technology, design, and strategic
@@ -311,7 +313,7 @@ export default function Home() {
         </div>
       </section>
       <section
-        className="relative bg-gradient-to-t from-white via-slate-200 via-20% to-slate-200 pb-24 sm:pb-32"
+        className="bg-gradient-to-t from-white via-slate-200 via-20% to-slate-200 pb-24 sm:pb-32"
         id="ourventures">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-12">
           <div className="mx-auto max-w-2xl lg:text-center">
@@ -321,7 +323,7 @@ export default function Home() {
             <p className="mt-2 font-display text-pretty text-4xl font-semibold tracking-tight text-slate-800 sm:text-5xl lg:text-balance">
               Bridging Innovation & Expertise
             </p>
-            <p className="mt-6 text-lg/8 text-slate-600">
+            <p className="mt-6 text-lg/7 text-slate-600 text-balance">
               Our subsidiaries and partnerships provide advanced solutions
               focused on tangible, real-world outcomes.
             </p>
@@ -343,7 +345,9 @@ export default function Home() {
                   </dt>
                   <dd className="flex flex-auto flex-col text-base/7 text-slate-600 space-y-2">
                     <p className="flex-auto font-semibold">{venture.intro}</p>
-                    <p className="flex-auto text-sm">{venture.description}</p>
+                    <p className="flex-auto text-sm text-balance">
+                      {venture.description}
+                    </p>
                     <p className="mt-6">
                       <a
                         href={venture.href}
@@ -371,11 +375,11 @@ export default function Home() {
               <p className="mt-2 font-display text-pretty text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl lg:text-balance">
                 Let&apos;s Build the Future Together
               </p>
-              <p className="mt-6 text-lg/6 text-slate-600">
+              <p className="mt-6 text-lg/6 text-slate-600 text-balance">
                 We partner with forward-thinking businesses to create lasting
                 impact through innovation and strategy.
               </p>
-              <p className="mt-6 text-lg/6 text-slate-600">
+              <p className="mt-6 text-lg/6 text-slate-600 text-balance">
                 Whether you&apos;re interested in a collaboration, investment,
                 or learning more about our ventures, we&apos;d love to hear from
                 you.
@@ -431,8 +435,26 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <footer className="relative bg-slate-600 opacity-90">
+      <footer className="relative bg-cyan-600 text-white">
         <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
+          <Link
+            href="/"
+            className="w-42 lg:w-50 mx-auto uppercase text-black flex flex-col items-center justify-center mb-4">
+            <p className="font-display text-3xl lg:text-4xl text-white">
+              Weybridge
+            </p>
+            <p className="text-sm tracking-[0.7em] lg:tracking-[1em] text-cyan-700 bg-white rounded-xs w-full text-center font-medium">
+              Venture<span className="tracking-[0]">s</span>
+            </p>
+          </Link>
+          <div className="text-center font-light text-sm/6 text-cyan-400 mb-8">
+            <p>&copy; 2025 Weybridge Ventures FZE LLC. All rights reserved.</p>
+            <p>
+              Amber Gem Tower, Sheikh Khalifa Bin Zayed Road, Ajman, United Arab
+              Emirates.
+            </p>
+            <p>Registration Number 262991153888</p>
+          </div>
           <nav
             aria-label="Footer"
             className="flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6">
@@ -440,15 +462,11 @@ export default function Home() {
               <a
                 key={item.name}
                 href={item.href}
-                className="text-slate-400 hover:text-white">
+                className="text-cyan-400 hover:text-white">
                 {item.name}
               </a>
             ))}
           </nav>
-
-          <p className="uppercase mt-10 text-center text-xs/6 text-slate-400">
-            &copy; 2025 Weybridge Ventures FZE LLC. All rights reserved.
-          </p>
         </div>
       </footer>
     </>
