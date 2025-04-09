@@ -4,6 +4,8 @@ import "./globals.css";
 
 import { Lexend } from "next/font/google";
 import Head from "next/head";
+import Header from "./header";
+import Footer from "./footer";
 
 const lexend = Lexend({
   variable: "--font-lexend",
@@ -23,12 +25,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${lexend.variable} bg-cyan-600`}>
+    <html lang="en">
       <Head>
         <meta name="apple-mobile-web-app-title" content="Weybridge" />
       </Head>
       <GoogleTagManager gtmId="G-6NBMDNFNHT" />
-      <body className="antialiased bg-cyan-600 text-light">{children}</body>
+      <body className={`antialiased text-light ${lexend.variable}`}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

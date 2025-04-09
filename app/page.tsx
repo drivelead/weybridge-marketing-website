@@ -1,16 +1,6 @@
-"use client";
-
-import Head from "next/head";
 import Image from "next/image";
-import { useState } from "react";
-import { Dialog, DialogPanel } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import Link from "next/link";
 
-const navigation = [
-  { name: "About Us", href: "#aboutus" },
-  { name: "Ventures", href: "#ourventures" },
-];
+import { Metadata } from "next";
 
 const ventures = [
   {
@@ -63,143 +53,32 @@ const ventures = [
   },
 ];
 
-const footerNavigation = {
-  main: [
-    { name: "About Weybridge Ventures", href: "#aboutus" },
-    { name: "Our Ventures & Partnerships", href: "#ourventures" },
-    { name: "Contact Us", href: "#contactus" },
-    { name: "Terms of Use", href: "#" },
-    { name: "Privacy Policy", href: "#" },
-  ],
+export const metadata: Metadata = {
+  title: "Weybridge Ventures | Bridging Innovation & Excellence",
+  description:
+    "Weybridge Ventures is a British-UAE holding company investing in technology, design, and strategic ventures.",
+
+  openGraph: {
+    title: "Weybridge Ventures | Bridging Innovation & Excellence",
+    description:
+      "Weybridge Ventures is a British-UAE holding company investing in technology, design, and strategic ventures.",
+    images: [
+      {
+        url: "https://www.weybridge.ae/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Weybridge Ventures | Bridging Innovation & Excellence",
+      },
+    ],
+    siteName: "Weybridge Ventures",
+    locale: "en_US",
+    type: "website",
+  },
 };
 
 export default function Home() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
-    <>
-      <Head>
-        <title>Weybridge Ventures | Bridging Innovation & Excellence</title>
-        <meta
-          name="description"
-          content="Weybridge Ventures is a British-UAE holding company investing in technology, design, and strategic ventures."
-        />
-        <meta
-          property="og:title"
-          content="Weybridge Ventures | Bridging Innovation & Excellence"
-        />
-        <meta
-          property="og:description"
-          content="Weybridge Ventures is a British-UAE holding company investing in technology, design, and strategic ventures."
-        />
-        <meta
-          property="og:image"
-          content="https://www.weybridge.ae/og-image.jpg"
-        />
-        <meta property="og:url" content="https://www.weybridge.ae" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="Weybridge Ventures | Bridging Innovation & Excellence"
-        />
-        <meta
-          name="twitter:description"
-          content="Weybridge Ventures is a British-UAE holding company investing in technology, design, and strategic ventures."
-        />
-        <meta
-          name="twitter:image"
-          content="https://www.weybridge.ae/og-image.jpg"
-        />
-      </Head>
-      <header className="bg-gradient-to-b from-cyan-600 to-cyan-500/0 h-[6.5rem] absolute top-0 left-0 w-full z-50 transition-all duration-300">
-        <nav
-          aria-label="Global"
-          className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
-          <div className="flex flex-1">
-            <div className="hidden lg:flex lg:gap-x-12">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-md text-white font-medium hover:underline hover:underline-offset-2 uppercase">
-                  {item.name}
-                </a>
-              ))}
-            </div>
-            <div className="flex lg:hidden">
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(true)}
-                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5">
-                <span className="sr-only">Open main menu</span>
-                <Bars3Icon aria-hidden="true" className="size-6" />
-              </button>
-            </div>
-          </div>
-          <Link
-            href="/"
-            className="uppercase text-black flex flex-col items-center justify-center -mt-2">
-            <p className="font-display text-3xl lg:text-4xl text-white">
-              Weybridge
-            </p>
-            <p className="text-sm tracking-[0.7em] lg:tracking-[1em] text-cyan-700 bg-white rounded-xs w-full text-center font-medium">
-              Venture<span className="tracking-[0]">s</span>
-            </p>
-          </Link>
-          <div className="flex flex-1 justify-end lg:gap-x-12">
-            <a
-              href="#contactus"
-              target="_blank"
-              className="text-md text-white font-medium hover:underline hover:underline-offset-2 uppercase">
-              Contact<span className="hidden sm:inline"> Us</span>
-            </a>
-          </div>
-        </nav>
-        <Dialog
-          open={mobileMenuOpen}
-          onClose={setMobileMenuOpen}
-          className="lg:hidden">
-          <div className="fixed inset-0 z-10" />
-          <DialogPanel className="fixed inset-y-0 left-0 z-10 w-full overflow-y-auto bg-cyan-500 text-white px-6 py-6">
-            <div className="flex items-center justify-between">
-              <div className="flex flex-1">
-                <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="-m-2.5 rounded-md p-2.5 text-white">
-                  <span className="sr-only">Close menu</span>
-                  <XMarkIcon aria-hidden="true" className="size-6" />
-                </button>
-              </div>
-              <Link
-                href="/"
-                className="uppercase text-black flex flex-col items-center justify-center -mt-2">
-                <p className="font-display text-4xl lg:text-5xl -mb-1 text-white">
-                  Weybridge
-                </p>
-                <p className="tracking-[1em] text-white">
-                  Venture<span className="tracking-[0]">s</span>
-                </p>
-              </Link>
-              <div className="flex flex-1 justify-end">
-                <a href="#" className="text-sm/6 font-semibold text-text-white">
-                  Log in <span aria-hidden="true">&rarr;</span>
-                </a>
-              </div>
-            </div>
-            <div className="mt-6 space-y-2">
-              {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-slate-900 hover:bg-slate-50">
-                  {item.name}
-                </a>
-              ))}
-            </div>
-          </DialogPanel>
-        </Dialog>
-      </header>
+    <main>
       <section className="relative isolate h-dvh">
         <div className="absolute inset-0 bg-gradient-to-t from-white via-white/0 via-25% h-full" />
         {/* 🔁 Video Background */}
@@ -208,7 +87,8 @@ export default function Home() {
           loop
           muted
           playsInline
-          className="absolute inset-0 -z-50 w-full h-full object-cover">
+          className="absolute inset-0 -z-50 w-full h-full object-cover"
+        >
           <source src="/videos/hero-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -227,7 +107,8 @@ export default function Home() {
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <a
                   href="#aboutus"
-                  className="text-sm/6 font-semibold text-white">
+                  className="text-sm/6 font-semibold text-white"
+                >
                   Discover Weybridge Ventures <span aria-hidden="true">→</span>
                 </a>
               </div>
@@ -238,7 +119,8 @@ export default function Home() {
 
       <section
         className="overflow-hidden bg-gradient-to-t from-slate-200 to-white pb-24 sm:pb-32 pt-8"
-        id="aboutus">
+        id="aboutus"
+      >
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
           <div className="max-w-4xl">
             <p className="text-base/7 font-medium tracking-wider text-cyan-600 uppercase">
@@ -314,7 +196,8 @@ export default function Home() {
       </section>
       <section
         className="bg-gradient-to-t from-white via-slate-200 via-20% to-slate-200 pb-24 sm:pb-32"
-        id="ourventures">
+        id="ourventures"
+      >
         <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-12">
           <div className="mx-auto max-w-2xl lg:text-center">
             <h2 className="text-base/7 font-medium tracking-wider text-cyan-600 uppercase">
@@ -327,7 +210,6 @@ export default function Home() {
               Our subsidiaries and partnerships provide advanced solutions
               focused on tangible, real-world outcomes.
             </p>
-            w
           </div>
           <div className="mx-auto mt-6 max-w-2xl sm:mt-8 lg:mt-12 lg:max-w-none">
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
@@ -352,7 +234,8 @@ export default function Home() {
                       <a
                         href={venture.href}
                         target="_blank"
-                        className="text-sm/6 font-semibold text-cyan-600">
+                        className="text-sm/6 font-semibold text-cyan-600"
+                      >
                         Visit {venture.name} <span aria-hidden="true">→</span>
                       </a>
                     </p>
@@ -365,7 +248,8 @@ export default function Home() {
       </section>
       <section
         className="relative overflow-hidden bg-white pb-24 sm:pb-32 pt-8"
-        id="contactus">
+        id="contactus"
+      >
         <div className="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:max-w-none lg:min-w-full lg:flex-none lg:gap-y-8">
             <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
@@ -387,7 +271,8 @@ export default function Home() {
               <div className="mt-10 flex">
                 <a
                   href="mailto:contact@weybridge.ae"
-                  className="rounded-md bg-cyan-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-cyan-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600">
+                  className="rounded-md bg-cyan-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-cyan-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
+                >
                   Contact Us <span aria-hidden="true">&rarr;</span>
                 </a>
               </div>
@@ -435,40 +320,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <footer className="relative bg-cyan-600 text-white">
-        <div className="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
-          <Link
-            href="/"
-            className="w-42 lg:w-50 mx-auto uppercase text-black flex flex-col items-center justify-center mb-4">
-            <p className="font-display text-3xl lg:text-4xl text-white">
-              Weybridge
-            </p>
-            <p className="text-sm tracking-[0.7em] lg:tracking-[1em] text-cyan-700 bg-white rounded-xs w-full text-center font-medium">
-              Venture<span className="tracking-[0]">s</span>
-            </p>
-          </Link>
-          <div className="text-center font-light text-sm/6 text-cyan-400 mb-8">
-            <p>&copy; 2025 Weybridge Ventures FZE LLC. All rights reserved.</p>
-            <p>
-              Amber Gem Tower, Sheikh Khalifa Bin Zayed Road, Ajman, United Arab
-              Emirates.
-            </p>
-            <p>Registration Number 262991153888</p>
-          </div>
-          <nav
-            aria-label="Footer"
-            className="flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6">
-            {footerNavigation.main.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-cyan-400 hover:text-white">
-                {item.name}
-              </a>
-            ))}
-          </nav>
-        </div>
-      </footer>
-    </>
+    </main>
   );
 }
