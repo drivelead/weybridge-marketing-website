@@ -72,36 +72,52 @@ export default function ContactForm() {
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-8">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-6 mt-8 font-light">
         <div className="space-y-1">
-          <Label htmlFor="fullName">Full name</Label>
+          <Label htmlFor="fullName" className="text-cyan-200">
+            Full name
+          </Label>
           <Input
             id="fullName"
             {...register("fullName")}
-            placeholder={"Enter your full name"}
+            placeholder={"Enter your name"}
+            className="bg-white"
           />
           {errors.fullName && (
-            <p className="text-red-500 text-sm">{errors.fullName.message}</p>
+            <p className="bg-cyan-50 text-red-500 px-2 py-1 uppercase text-xs rounded-xs">
+              {errors.fullName.message}
+            </p>
           )}
         </div>
 
         <div className="space-y-1">
-          <Label htmlFor="company">Company</Label>
+          <Label htmlFor="company" className="text-cyan-200">
+            Company
+          </Label>
           <Input
             id="company"
             {...register("company")}
             placeholder={"Enter your company"}
+            className="bg-white"
           />
           {errors.company && (
-            <p className="text-red-500 text-sm">{errors.company.message}</p>
+            <p className="bg-cyan-50 text-red-500 px-2 py-1 uppercase text-xs rounded-xs">
+              {errors.company.message}
+            </p>
           )}
         </div>
 
         <div className="space-y-1">
-          <Label htmlFor="phone">{"Phone number"}</Label>
-          <PhoneInput name="phone" />
+          <Label htmlFor="phone" className="text-cyan-200">
+            {"Phone number"}
+          </Label>
+          <PhoneInput name="phone" className="bg-white" />
           {errors.phone && (
-            <p className="text-red-500 text-sm">{errors.phone.message}</p>
+            <p className="bg-cyan-50 text-red-500 px-2 py-1 uppercase text-xs rounded-xs">
+              {errors.phone.message}
+            </p>
           )}
         </div>
 
@@ -110,7 +126,9 @@ export default function ContactForm() {
           Submit
         </Button>
 
-        {error && <p className="text-red-500 text-sm">{error}</p>}
+        {error && (
+          <p className="bg-white text-orange-600 text-sm px-2 py-1">{error}</p>
+        )}
         {success && <p className="text-green-500 text-sm">{success}</p>}
       </form>
     </FormProvider>
