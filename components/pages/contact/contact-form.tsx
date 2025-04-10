@@ -111,7 +111,7 @@ export default function ContactForm() {
 
         <div className="space-y-1">
           <Label htmlFor="phone" className="text-cyan-200">
-            {"Phone number"}
+            {"Mobile number"}
           </Label>
           <PhoneInput name="phone" className="bg-white" />
           {errors.phone && (
