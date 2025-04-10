@@ -395,8 +395,8 @@ export default function Home() {
             <div className="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents">
               <div className="w-0 flex-auto lg:ml-auto lg:w-auto lg:flex-none lg:self-end">
                 <Image
-                  alt="Man talking across a table during a one-on-one meeting."
-                  src="/photos/oliver-speaking-in-1on1-meeting.jpeg"
+                  alt="Woman laughing during a video call, seated on a modern armchair."
+                  src="/photos/lindsay-laughing-during-video-call.jpeg"
                   width={1280}
                   height={1024}
                   className="aspect-7/5 w-[37rem] max-w-none rounded-2xl bg-slate-50 object-cover"
@@ -415,7 +415,7 @@ export default function Home() {
                 <div className="flex w-96 flex-auto justify-end lg:w-auto lg:flex-none">
                   <Image
                     alt="Woman standing and smiling with a tablet during an informal meeting."
-                    src="/photos/maya-holding-tablet-in-casual-meeting.jpeg"
+                    src="/photos/team-strategy-session-in-open-office.jpeg"
                     width={1280}
                     height={1024}
                     className="aspect-7/5 w-[37rem] max-w-none flex-none rounded-2xl bg-slate-50 object-cover"
@@ -423,8 +423,8 @@ export default function Home() {
                 </div>
                 <div className="hidden sm:block sm:w-0 sm:flex-auto lg:w-auto lg:flex-none">
                   <Image
-                    alt="Woman laughing during a video call, seated on a modern armchair."
-                    src="/photos/lindsay-laughing-during-video-call.jpeg"
+                    alt="Man talking across a table during a one-on-one meeting."
+                    src="/photos/oliver-speaking-in-1on1-meeting.jpeg"
                     width={1280}
                     height={1024}
                     className="aspect-4/3 w-[24rem] max-w-none rounded-2xl bg-slate-50 object-cover"
