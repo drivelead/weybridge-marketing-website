@@ -50,7 +50,7 @@ export default function ContactForm() {
     if (!success || !data) {
       console.log("Error creating contact form", error);
       setError(
-        `There was some error submitting your form. Our team have been notified. We will contact you shortly. Thanks.`
+        `There was an error submitting your form. Our team have been notified. Thanks.`
       );
       return;
     }
@@ -86,7 +86,7 @@ export default function ContactForm() {
             className="bg-white"
           />
           {errors.fullName && (
-            <p className="bg-cyan-50 text-red-500 px-2 py-1 uppercase text-xs rounded-xs">
+            <p className="bg-red-600 text-red-50 font-medium px-2 py-1 uppercase text-xs rounded-xs">
               {errors.fullName.message}
             </p>
           )}
@@ -113,7 +113,7 @@ export default function ContactForm() {
           <Label htmlFor="phone" className="text-cyan-200">
             {"Mobile number"}
           </Label>
-          <PhoneInput name="phone" className="bg-white" />
+          <PhoneInput name="phone" />
           {errors.phone && (
             <p className="bg-cyan-50 text-red-500 px-2 py-1 uppercase text-xs rounded-xs">
               {errors.phone.message}
@@ -127,7 +127,9 @@ export default function ContactForm() {
         </Button>
 
         {error && (
-          <p className="bg-white text-orange-600 text-sm px-2 py-1">{error}</p>
+          <p className="bg-orange-300 text-orange-800 text-sm px-2 py-1">
+            {error}
+          </p>
         )}
         {success && <p className="text-green-500 text-sm">{success}</p>}
       </form>

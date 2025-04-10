@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { Metadata } from "next";
+import Link from "next/link";
 
 const ventures = [
   {
@@ -87,8 +88,7 @@ export default function Home() {
           loop
           muted
           playsInline
-          className="absolute inset-0 -z-50 w-full h-full object-cover"
-        >
+          className="absolute inset-0 -z-50 w-full h-full object-cover">
           <source src="/videos/hero-video.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -107,8 +107,7 @@ export default function Home() {
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <a
                   href="#aboutus"
-                  className="text-sm/6 font-semibold text-white"
-                >
+                  className="text-sm/6 font-semibold text-white">
                   Discover Weybridge Ventures <span aria-hidden="true">→</span>
                 </a>
               </div>
@@ -119,8 +118,7 @@ export default function Home() {
 
       <section
         className="overflow-hidden bg-gradient-to-t from-slate-200 to-white pb-24 sm:pb-32 pt-8"
-        id="aboutus"
-      >
+        id="aboutus">
         <div className="mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8">
           <div className="max-w-4xl">
             <p className="text-base/7 font-medium tracking-wider text-cyan-600 uppercase">
@@ -153,7 +151,7 @@ export default function Home() {
             </div>
             <div className="pt-16 lg:row-span-2 lg:-mr-16 xl:mr-auto">
               <div className="-mx-8 grid grid-cols-2 gap-4 sm:-mx-16 sm:grid-cols-4 lg:mx-0 lg:grid-cols-2 lg:gap-4 xl:gap-8">
-                <div className="aspect-square overflow-hidden rounded-xl shadow-xl outline outline-1 -outline-offset-1 outline-black/10">
+                <div className="aspect-square overflow-hidden rounded-xl shadow-xl outline -outline-offset-1 outline-black/10">
                   <Image
                     alt="Lindsay catching up on messages before starting her workday."
                     src="/photos/lindsay-using-smartphone-at-home.jpeg"
@@ -162,7 +160,7 @@ export default function Home() {
                     className="block size-full object-cover"
                   />
                 </div>
-                <div className="-mt-8 aspect-square overflow-hidden rounded-xl shadow-xl outline outline-1 -outline-offset-1 outline-black/10 lg:-mt-40">
+                <div className="-mt-8 aspect-square overflow-hidden rounded-xl shadow-xl outline -outline-offset-1 outline-black/10 lg:-mt-40">
                   <Image
                     alt="Business professional walking confidently through a modern glass corridor."
                     src="/photos/devon-walking-through-glass-corridor.jpeg"
@@ -171,7 +169,7 @@ export default function Home() {
                     className="block size-full object-cover"
                   />
                 </div>
-                <div className="aspect-square overflow-hidden rounded-xl shadow-xl outline outline-1 -outline-offset-1 outline-black/10">
+                <div className="aspect-square overflow-hidden rounded-xl shadow-xl outline  -outline-offset-1 outline-black/10">
                   <Image
                     alt="Two colleagues working together on a laptop in a casual office environment."
                     src="/photos/jennifer-and-andy-collaborating-over-laptop.jpeg"
@@ -180,7 +178,7 @@ export default function Home() {
                     className="block size-full object-cover"
                   />
                 </div>
-                <div className="-mt-8 aspect-square overflow-hidden rounded-xl shadow-xl outline outline-1 -outline-offset-1 outline-black/10 lg:-mt-40">
+                <div className="-mt-8 aspect-square overflow-hidden rounded-xl shadow-xl outline -outline-offset-1 outline-black/10 lg:-mt-40">
                   <Image
                     alt="Man and woman smiling while discussing something on a laptop."
                     width={1280}
@@ -196,8 +194,7 @@ export default function Home() {
       </section>
       <section
         className="bg-gradient-to-t from-white via-slate-200 via-20% to-slate-200 pb-24 sm:pb-32"
-        id="ourventures"
-      >
+        id="ourventures">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 pt-6 sm:pt-8 lg:pt-12">
           <div className="mx-auto max-w-2xl lg:text-center">
             <h2 className="text-base/7 font-medium tracking-wider text-cyan-600 uppercase">
@@ -234,8 +231,7 @@ export default function Home() {
                       <a
                         href={venture.href}
                         target="_blank"
-                        className="text-sm/6 font-semibold text-cyan-600"
-                      >
+                        className="text-sm/6 font-semibold text-cyan-600">
                         Visit {venture.name} <span aria-hidden="true">→</span>
                       </a>
                     </p>
@@ -248,8 +244,7 @@ export default function Home() {
       </section>
       <section
         className="relative overflow-hidden bg-white pb-24 sm:pb-32 pt-8"
-        id="contactus"
-      >
+        id="contactus">
         <div className="mx-auto max-w-7xl px-6 lg:flex lg:px-8">
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-12 gap-y-16 lg:mx-0 lg:max-w-none lg:min-w-full lg:flex-none lg:gap-y-8">
             <div className="lg:col-end-1 lg:w-full lg:max-w-lg lg:pb-8">
@@ -269,12 +264,11 @@ export default function Home() {
                 you.
               </p>
               <div className="mt-10 flex">
-                <a
-                  href="mailto:contact@weybridge.ae"
-                  className="rounded-md bg-cyan-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-cyan-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600"
-                >
+                <Link
+                  href="/contact"
+                  className="rounded-md bg-cyan-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-cyan-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-600">
                   Contact Us <span aria-hidden="true">&rarr;</span>
-                </a>
+                </Link>
               </div>
             </div>
             <div className="flex flex-wrap items-start justify-end gap-6 sm:gap-8 lg:contents">
