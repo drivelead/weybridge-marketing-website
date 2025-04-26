@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { v4 } from "uuid";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -29,4 +30,15 @@ export function generateUniqueId() {
   ).join("");
 
   return `${timestampPart}${randomPart}`;
+}
+
+export function generateFilename(): string {
+  return v4().split("-")[0];
+}
+
+// Example of renaming a file
+export function renameFile(file: File): File {
+  const fileExtension = file.name.split(".").pop();
+  const newFileName = `${generateFilename()}.${fileExtension}`;
+  return new File([file], newFileName, { type: file.type });
 }

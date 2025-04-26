@@ -2,8 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
-import { Button } from "@/components/ui/button";
 import { getJobLisitingById } from "@/lib/api/service";
+
+import { Button } from "@/components/ui/button";
 import Prose from "@/components/app/prose";
 
 export type CareerPageProps = {

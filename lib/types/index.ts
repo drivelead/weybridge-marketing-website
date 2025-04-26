@@ -9,6 +9,12 @@ export type UserSessionProps = {
   origin?: string;
 };
 
+export type PromiseReturn<T = any> = {
+  success: boolean;
+  data: T;
+  error: { message: string; status?: string | number } | null;
+};
+
 type JobApplicationStatus = "Applied" | "Shortlisted" | "Selected" | "Rejected";
 
 export type ExperienceLevel =

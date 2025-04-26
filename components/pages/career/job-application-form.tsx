@@ -3,8 +3,15 @@
 import React from "react";
 
 import { z } from "zod";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { PhoneInput as IntPhoneInput } from "react-international-phone";
+
+import { createCareerApplication } from "@/app/actions";
+import { generateUniqueId, renameFile } from "@/lib/utils";
+import { PromiseReturn } from "@/lib/types";
+
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,10 +22,9 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { PhoneInput as IntPhoneInput } from "react-international-phone";
-import "react-international-phone/style.css";
 import { Checkbox } from "@/components/ui/checkbox";
-import { createCareerApplication } from "@/app/actions";
+import "react-international-phone/style.css";
+import { createAsset } from "@/lib/api/service/create-asset";
 
 type Props = {
   careerId: string;
@@ -48,8 +54,12 @@ const formSchema = z.object({
 
 type FormSchemaType = z.infer<typeof formSchema>;
 
-export default function ApplicationForm({ careerId }: Props) {
-  const [submitting, setSubmitting] = React.useState(false);
+type Status = "idle" | "uploading-file" | "submitting" | "success";
+
+export default function JobApplicationForm({ careerId }: Props) {
+  const [error, setError] = React.useState<string | null>(null);
+  const [progress, setProgress] = React.useState<number>(0);
+  const [status, setStatus] = React.useState<Status>("idle");
 
   const form = useForm<FormSchemaType>({
     resolver: zodResolver(formSchema),
@@ -64,10 +74,70 @@ export default function ApplicationForm({ careerId }: Props) {
     },
   });
 
+  async function getAWSS3SignedUrl(
+    file: File,
+    bucketDirectory: string = "uploads"
+  ): Promise<{ url: string; fileUrl: string } | null> {
+    try {
+      const response = await axios.post("/api/aws/s3/sign", {
+        name: file.name,
+        type: file.type,
+        bucketDirectory,
+      });
+
+      if (response.status !== 200) {
+        throw new Error(
+          response.data?.error?.message || "Error getting signed URL",
+          {
+            cause: response.data.error,
+          }
+        );
+      }
+
+      return response.data;
+    } catch (error: any) {
+      console.error("Error getting signed URL:", error.message, error?.reason);
+      return null;
+    }
+  }
+
+  async function uploadFileToS3(
+    file: File,
+    signedUrl: string,
+    { safe = true }: { safe?: boolean }
+  ): Promise<PromiseReturn> {
+    try {
+      const data = await axios.put(signedUrl, file, {
+        headers: {
+          "Content-Type": file.type,
+          "Access-Control-Allow-Origin": "*",
+        },
+        onUploadProgress: (progressEvent) => {
+          const percentCompleted = Math.round(
+            (progressEvent.loaded * 100) / (progressEvent?.total || 100)
+          );
+          setProgress(percentCompleted);
+        },
+      });
+
+      if (data.status !== 200) {
+        throw new Error("Error uploading file", { cause: data?.data });
+      }
+
+      return { success: true, data: data, error: null };
+    } catch (error: any) {
+      console.error(`Error uploading file ${file.name}:`, error);
+      if (!safe) throw error;
+      return { success: false, data: null, error: error };
+    }
+  }
+
   async function onSubmit(values: FormSchemaType) {
     if (values.cap) {
       return;
     }
+
+    setStatus("submitting");
 
     const formData = new FormData();
 
@@ -79,7 +149,54 @@ export default function ApplicationForm({ careerId }: Props) {
 
     // upload CV to S3
 
-    formData.append("cv", "cv.pdf");
+    const cvFile = values.cv as File;
+    const renamedCVFile = renameFile(cvFile);
+
+    setStatus("uploading-file");
+
+    const signedData = await getAWSS3SignedUrl(renamedCVFile);
+
+    if (!signedData) {
+      setError("Error submitting application. Please try again later.");
+      setStatus("idle");
+      form.reset();
+      return;
+    }
+
+    const fileUploadResponse = await uploadFileToS3(
+      renamedCVFile,
+      signedData.url,
+      {}
+    );
+
+    console.log("💡 fileUploadResponse", fileUploadResponse);
+
+    if (!fileUploadResponse.success) {
+      setError("Error submitting application. Please try again later.");
+      setStatus("idle");
+      form.reset();
+      return;
+    }
+
+    console.log("💡 fileUploadResponse.data", fileUploadResponse.data);
+
+    const assetResponse = await createAsset({
+      _id: generateUniqueId(),
+      url: signedData.fileUrl,
+      originalName: cvFile.name,
+      fileName: renamedCVFile.name,
+      fileSize: cvFile.size,
+      mimeType: cvFile.type,
+    });
+
+    if (!assetResponse.success) {
+      setError("Error submitting application. Please try again later.");
+      setStatus("idle");
+      form.reset();
+      return;
+    }
+
+    formData.append("cv", assetResponse.data._id);
 
     // extra fields
     formData.append("locale", "en");
@@ -89,13 +206,21 @@ export default function ApplicationForm({ careerId }: Props) {
       Intl.DateTimeFormat().resolvedOptions().timeZone
     );
 
-    setSubmitting(true);
+    setStatus("submitting");
 
     const response = await createCareerApplication(formData);
 
     console.log("💡 response", response);
 
-    setSubmitting(false);
+    if (!response.success) {
+      setError("Error submitting application. Please try again later.");
+      setStatus("idle");
+      form.reset();
+      return;
+    }
+
+    setStatus("success");
+    form.reset();
   }
 
   return (
@@ -231,9 +356,29 @@ export default function ApplicationForm({ careerId }: Props) {
 
         <Input type="hidden" {...form.register("cap")} />
 
-        <Button type="submit" disabled={submitting} className="w-full">
-          {submitting ? "Submitting..." : "Submit Application"}
+        <Button
+          type="submit"
+          disabled={status === "submitting" || status === "uploading-file"}
+          className="w-full"
+        >
+          {status === "submitting" ? "Submitting..." : "Submit Application"}
         </Button>
+
+        <div className="text-center">
+          {status === "uploading-file" && progress ? (
+            <p className="text-sm text-gray-500">Uploading CV: {progress}%</p>
+          ) : (
+            ""
+          )}
+
+          {status === "success" && (
+            <p className="text-green-500">
+              Application Submitted Successfully!
+            </p>
+          )}
+
+          {error && <p className="text-red-500">{error}</p>}
+        </div>
       </form>
     </Form>
   );

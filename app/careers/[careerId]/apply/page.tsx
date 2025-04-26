@@ -2,7 +2,7 @@ import React from "react";
 import { CareerPageProps } from "../page";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import ApplicationForm from "@/components/pages/career/application-form";
+import JobApplicationForm from "@/components/pages/career/job-application-form";
 
 export default async function ApplyForCareer({ params }: CareerPageProps) {
   const { careerId } = await params;
@@ -30,7 +30,7 @@ export default async function ApplyForCareer({ params }: CareerPageProps) {
           </div>
 
           <div className="mt-8 bg-white p-6 rounded-sm">
-            <ApplicationForm careerId={careerId} />
+            <JobApplicationForm careerId={careerId} />
           </div>
         </div>
       </section>
