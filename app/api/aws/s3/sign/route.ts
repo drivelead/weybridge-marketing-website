@@ -11,7 +11,7 @@ const s3 = new S3({
   signatureVersion: "v4",
 });
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: NextRequest) {
   const body = await request.json();
 
   try {
