@@ -5,24 +5,29 @@ import React from "react";
 import { useForm, FormProvider } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-import { createContactForm } from "@/lib/service/service/create-contact-form";
 import { sendNotifications } from "@/app/actions";
+import { createContactForm } from "@/lib/service/service/create-contact-form";
 
 import PhoneInput from "./phone-input";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import LoadingDots from "@/components/app/loading-dots";
 
 const schema = z.object({
   fullName: z.string().min(1, "Full name is required"),
   company: z.string(),
+  email: z.string().min(1, "Email is required"),
   phone: z.string().min(1, "Phone number is required"),
+  cp: z.string().optional(),
 });
 
 type FormData = z.infer<typeof schema>;
 
-export default function ContactForm() {
+type Props = {};
+
+export default function ContactForm({}: Props) {
+  const [loading, setLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string | null>(null);
   const [success, setSuccess] = React.useState<string | null>(null);
 
@@ -32,6 +37,7 @@ export default function ContactForm() {
       fullName: "",
       company: "",
       phone: "",
+      email: "",
     },
   });
 
@@ -39,9 +45,12 @@ export default function ContactForm() {
     handleSubmit,
     register,
     formState: { errors },
+    reset,
   } = form;
 
   async function onSubmit(formData: FormData) {
+    if (formData.cp) return;
+    setLoading(true);
     const { success, data, error } = await createContactForm(formData, {
       locale: "en",
       theme: "system",
@@ -52,85 +61,105 @@ export default function ContactForm() {
       setError(
         `There was an error submitting your form. Our team have been notified. Thanks.`
       );
+      setLoading(false);
       return;
     }
 
-    setSuccess(
-      "Thank you for submitting your form. We will contact you shortly. Thanks."
-    );
-    const notificationFormData = new FormData();
-    notificationFormData.append("phone", formData.phone);
+    let _formData = new FormData();
+    _formData.append("phone", formData.phone);
+    _formData.append("email", formData.email);
+    _formData.append("fullName", formData.fullName);
+    _formData.append("company", formData.company);
 
-    const notificationResponse = await sendNotifications(notificationFormData);
+    const notificationResponse = await sendNotifications(_formData);
 
     if (notificationResponse.success) {
-      console.log("WhatsApp message sent.", notificationResponse);
+      console.log("Notifications sent.", notificationResponse);
+      setSuccess(
+        `Thank you for submitting your form. We will contact you shortly. Thanks.`
+      );
     } else {
-      console.log("WhatsApp message error.", notificationResponse.error);
+      console.log("Notifications error.", notificationResponse.error);
+      setError(
+        `There was an error submitting your form. Our team have been notified. Thanks.`
+      );
     }
+
+    setLoading(false);
+    reset();
   }
 
   return (
     <FormProvider {...form}>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 mt-8 font-light">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 mt-8">
         <div className="space-y-1">
-          <Label htmlFor="fullName" className="text-cyan-200">
-            Full name
+          <Label className="text-cyan-200" htmlFor="fullName">
+            Name
           </Label>
           <Input
+            className="bg-white"
             id="fullName"
             {...register("fullName")}
             placeholder={"Enter your name"}
-            className="bg-white"
           />
           {errors.fullName && (
-            <p className="bg-red-600 text-red-50 font-medium px-2 py-1 uppercase text-xs rounded-xs">
-              {errors.fullName.message}
-            </p>
+            <p className="text-red-500 text-sm">{errors.fullName.message}</p>
           )}
         </div>
 
         <div className="space-y-1">
-          <Label htmlFor="company" className="text-cyan-200">
+          <Label className="text-cyan-200" htmlFor="company">
             Company
           </Label>
           <Input
+            className="bg-white"
             id="company"
             {...register("company")}
-            placeholder={"Enter your company"}
-            className="bg-white"
+            placeholder={"Enter your company name"}
           />
           {errors.company && (
-            <p className="bg-cyan-50 text-red-500 px-2 py-1 uppercase text-xs rounded-xs">
-              {errors.company.message}
-            </p>
+            <p className="text-red-500 text-sm">{errors.company.message}</p>
           )}
         </div>
 
         <div className="space-y-1">
-          <Label htmlFor="phone" className="text-cyan-200">
-            {"Mobile number"}
+          <Label className="text-cyan-200" htmlFor="phone">
+            Phone
           </Label>
           <PhoneInput name="phone" />
           {errors.phone && (
-            <p className="bg-cyan-50 text-red-500 px-2 py-1 uppercase text-xs rounded-xs">
-              {errors.phone.message}
-            </p>
+            <p className="text-red-500 text-sm">{errors.phone.message}</p>
           )}
         </div>
 
+        <div className="space-y-1">
+          <Label className="text-cyan-200" htmlFor="email">
+            Email
+          </Label>
+          <Input
+            className="bg-white"
+            id="email"
+            {...register("email")}
+            placeholder={"Enter your email address"}
+          />
+          {errors.email && (
+            <p className="text-red-500 text-sm">{errors.email.message}</p>
+          )}
+        </div>
+
+        {/* captcha */}
+        <Input id="cp" {...register("cp")} className="hidden" />
+
         {/* Submit Button */}
-        <Button type="submit" className="w-full cursor-pointer">
-          Submit
+        <Button
+          type="submit"
+          disabled={loading}
+          className="w-full cursor-pointer"
+        >
+          {loading ? <LoadingDots className="bg-white" /> : "Submit"}
         </Button>
 
-        {error && (
-          <p className="bg-orange-300 text-orange-800 text-sm px-2 py-1">
-            {error}
-          </p>
-        )}
+        {error && <p className="text-red-500 text-sm">{error}</p>}
         {success && <p className="text-green-500 text-sm">{success}</p>}
       </form>
     </FormProvider>

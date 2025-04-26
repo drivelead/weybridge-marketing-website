@@ -1,6 +1,7 @@
 @import url("https://use.typekit.net/eed7vck.css");
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
