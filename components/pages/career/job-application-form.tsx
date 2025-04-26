@@ -3,7 +3,7 @@
 import React from "react";
 
 import { z } from "zod";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { PhoneInput as IntPhoneInput } from "react-international-phone";
@@ -27,7 +27,7 @@ import "react-international-phone/style.css";
 import { createAsset } from "@/lib/api/service/create-asset";
 
 type Props = {
-  careerId: string;
+  jobListingId: string;
 };
 
 // Zod validation schema
@@ -56,7 +56,7 @@ type FormSchemaType = z.infer<typeof formSchema>;
 
 type Status = "idle" | "uploading-file" | "submitting" | "success";
 
-export default function JobApplicationForm({ careerId }: Props) {
+export default function JobApplicationForm({ jobListingId }: Props) {
   const [error, setError] = React.useState<string | null>(null);
   const [progress, setProgress] = React.useState<number>(0);
   const [status, setStatus] = React.useState<Status>("idle");
@@ -145,7 +145,7 @@ export default function JobApplicationForm({ careerId }: Props) {
     formData.append("whatsappNumber", values.whatsappNumber);
     formData.append("email", values.email);
     formData.append("currentLocation", values.currentLocation);
-    formData.append("applicationSource", careerId);
+    formData.append("applicationSource", jobListingId);
 
     // upload CV to S3
 

@@ -1,15 +1,10 @@
 import { JobListing, RequestOptions } from "@/lib/types";
 import { GRAPHQL_CDN_ENDPOINT } from "@/lib/config";
-import { GET_JOB_LISTING_BY_SLUG } from "../query/job-lisiting";
+import { GET_JOB_LISTING_PATHS } from "../query/job-lisiting";
 
-type Variables = {
-  slug: string;
-};
-
-export async function getJobLisitingBySlug(
-  variables: Variables,
+export async function getJobLisitingPaths(
   options?: RequestOptions
-): Promise<JobListing | null> {
+): Promise<{ jobListingSlug: string }[]> {
   try {
     const response = await fetch(GRAPHQL_CDN_ENDPOINT, {
       method: "POST",
@@ -18,17 +13,23 @@ export async function getJobLisitingBySlug(
         Accept: "application/json",
       },
       body: JSON.stringify({
-        query: GET_JOB_LISTING_BY_SLUG,
-        variables,
+        query: GET_JOB_LISTING_PATHS,
+        // variables: {
+        //   locales: [options.locale],
+        // },
       }),
     });
     const { data } = await response.json();
 
-    if (!data.jobListing) return null;
+    const jobListings: JobListing[] = data.jobListings || [];
 
-    return data.jobListing;
+    const paths = jobListings.map((jobListing) => ({
+      jobListingSlug: jobListing.slug,
+    }));
+
+    return paths;
   } catch (e: any) {
     console.log("Service Error: getBlogPosts - ", e.message);
-    return null;
+    return [];
   }
 }

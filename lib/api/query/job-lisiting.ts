@@ -24,11 +24,19 @@ export const GET_JOB_LISTINGS = gql`
   ${jobListingFragment}
 `;
 
-export const GET_JOB_LISTING_BY_ID = gql`
-  query GET_JOB_LISTING_BY_ID($id: ID!) {
-    jobListing(where: { id: $id }) {
+export const GET_JOB_LISTING_BY_SLUG = gql`
+  query GET_JOB_LISTING_BY_ID($slug: String!) {
+    jobListing(where: { slug: $slug }) {
       ...JobListing
     }
   }
   ${jobListingFragment}
+`;
+
+export const GET_JOB_LISTING_PATHS = gql`
+  query GET_JOB_LISTING_PATHS {
+    jobListings {
+      slug
+    }
+  }
 `;

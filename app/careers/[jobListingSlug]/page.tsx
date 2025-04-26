@@ -2,19 +2,26 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import React from "react";
 
-import { getJobLisitingById } from "@/lib/api/service";
+import { getJobLisitingBySlug, getJobLisitingPaths } from "@/lib/api/service";
 
 import { Button } from "@/components/ui/button";
 import Prose from "@/components/app/prose";
 
 export type CareerPageProps = {
-  params: Promise<{ careerId: string }>;
+  params: Promise<{ jobListingSlug: string }>;
 };
 
-export default async function Career({ params }: CareerPageProps) {
-  const { careerId } = await params;
+// generate static params
 
-  const jobListing = await getJobLisitingById({ id: careerId });
+export async function generateStaticParams() {
+  const paths = await getJobLisitingPaths();
+  return paths;
+}
+
+export default async function Career({ params }: CareerPageProps) {
+  const { jobListingSlug } = await params;
+
+  const jobListing = await getJobLisitingBySlug({ slug: jobListingSlug });
 
   if (!jobListing) notFound();
 
@@ -29,7 +36,7 @@ export default async function Career({ params }: CareerPageProps) {
 
             <div className="w-full flex items-center justify-center mt-4">
               <Button asChild>
-                <Link href={`/careers/${careerId}/apply`}>Apply now</Link>
+                <Link href={`/careers/${jobListingSlug}/apply`}>Apply now</Link>
               </Button>
             </div>
 
