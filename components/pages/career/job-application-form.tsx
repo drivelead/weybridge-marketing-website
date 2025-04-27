@@ -169,13 +169,12 @@ export default function JobApplicationForm({ jobListing }: Props) {
       return;
     }
 
+    // upload CV to S3
     const fileUploadResponse = await uploadFileToS3(
       renamedCVFile,
       signedData.url,
       {}
     );
-
-    console.log("💡 fileUploadResponse", fileUploadResponse);
 
     if (!fileUploadResponse.success) {
       setError("Error submitting application. Please try again later.");
@@ -184,17 +183,18 @@ export default function JobApplicationForm({ jobListing }: Props) {
       return;
     }
 
-    console.log("💡 fileUploadResponse.data", fileUploadResponse.data);
-
-    formData.append("cv", signedData.fileUrl);
-
     setStatus("submitting");
+
+    // send notifications to user and internal team
+    // append file url for emails attachments
+    formData.append("cv", signedData.fileUrl);
 
     const notificationsResponse =
       await sendJobApplicationNotifications(formData);
 
     console.log("💡 notificationsResponse", notificationsResponse);
 
+    // create asset document
     const assetResponse = await createAsset({
       _id: generateUniqueId(),
       url: signedData.fileUrl,
@@ -211,9 +211,10 @@ export default function JobApplicationForm({ jobListing }: Props) {
       return;
     }
 
+    // append created CV asset id to form data
     formData.append("cv", assetResponse.data._id);
 
-    // extra fields
+    // append extra fields
     formData.append("locale", "en");
     formData.append("theme", "system");
     formData.append(
@@ -221,9 +222,8 @@ export default function JobApplicationForm({ jobListing }: Props) {
       Intl.DateTimeFormat().resolvedOptions().timeZone
     );
 
+    // create application
     const response = await createCareerApplication(formData);
-
-    console.log("💡 response", response);
 
     if (!response.success) {
       setError("Error submitting application. Please try again later.");
@@ -238,7 +238,11 @@ export default function JobApplicationForm({ jobListing }: Props) {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-6"
+        id="job-capplication-form"
+      >
         {/* Full Name */}
         <FormField
           control={form.control}

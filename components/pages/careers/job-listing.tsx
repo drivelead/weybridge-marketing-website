@@ -22,12 +22,14 @@ export default function JobListing({ jobListing }: Props) {
       <p className="mt-2 text-lg/6 text-cyan-200">{jobListing.summary}</p>
 
       <div className="flex flex-col mt-4 text-cyan-300">
-        <span>{experienceLevelMap[jobListing.experienceLevel]}</span>
+        <span></span>
         <span>
+          {experienceLevelMap[jobListing.experienceLevel]} •{" "}
           {jobLocationMap[jobListing.jobLocation]} •{" "}
-          {jobTypeMap[jobListing.jobType]}
+          {jobTypeMap[jobListing.jobType]} •{" "}
+          {locationTypeMap[jobListing.locationType]}
         </span>
-        <span>{locationTypeMap[jobListing.locationType]}</span>
+        <span></span>
       </div>
 
       <Button asChild className="mt-4">
