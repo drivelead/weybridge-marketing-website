@@ -17,7 +17,7 @@ export default function JobListing({ jobListing }: Props) {
   return (
     <div>
       <h3 className="text-2xl font-semibold tracking-tight text-cyan-50">
-        <Link href={`/careers/${jobListing.slug}`}>{jobListing.title}</Link>
+        <Link href={`/careers/${jobListing.id}`}>{jobListing.title}</Link>
       </h3>
       <p className="mt-2 text-lg/6 text-cyan-200">{jobListing.summary}</p>
 
@@ -31,7 +31,7 @@ export default function JobListing({ jobListing }: Props) {
       </div>
 
       <Button asChild className="mt-4">
-        <Link href={`/careers/${jobListing.slug}/apply`}>Apply now</Link>
+        <Link href={`/careers/${jobListing.id}`}>Job Details</Link>
       </Button>
     </div>
   );

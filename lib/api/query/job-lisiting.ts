@@ -24,9 +24,9 @@ export const GET_JOB_LISTINGS = gql`
   ${jobListingFragment}
 `;
 
-export const GET_JOB_LISTING_BY_SLUG = gql`
-  query GET_JOB_LISTING_BY_ID($slug: String!) {
-    jobListing(where: { slug: $slug }) {
+export const GET_JOB_LISTING_BY_ID = gql`
+  query GET_JOB_LISTING_BY_ID($id: ID!) {
+    jobListing(where: { id: $id }) {
       ...JobListing
     }
   }
@@ -36,7 +36,7 @@ export const GET_JOB_LISTING_BY_SLUG = gql`
 export const GET_JOB_LISTING_PATHS = gql`
   query GET_JOB_LISTING_PATHS {
     jobListings {
-      slug
+      id
     }
   }
 `;

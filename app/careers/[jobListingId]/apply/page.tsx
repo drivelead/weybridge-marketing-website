@@ -2,15 +2,15 @@ import React from "react";
 import { CareerPageProps } from "../page";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getJobLisitingBySlug } from "@/lib/api/service";
+import { getJobLisitingById } from "@/lib/api/service";
 
 import { Button } from "@/components/ui/button";
 import JobApplicationForm from "@/components/pages/career/job-application-form";
 
 export default async function ApplyForCareer({ params }: CareerPageProps) {
-  const { jobListingSlug } = await params;
+  const { jobListingId } = await params;
 
-  const jobListing = await getJobLisitingBySlug({ slug: jobListingSlug });
+  const jobListing = await getJobLisitingById({ id: jobListingId });
 
   if (!jobListing) notFound();
 
@@ -36,7 +36,7 @@ export default async function ApplyForCareer({ params }: CareerPageProps) {
           </div>
 
           <div className="mt-8 bg-white p-6 rounded-sm">
-            <JobApplicationForm jobListingId={jobListing.id} />
+            <JobApplicationForm jobListing={jobListing} />
           </div>
         </div>
       </section>

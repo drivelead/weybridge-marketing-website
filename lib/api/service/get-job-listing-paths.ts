@@ -4,7 +4,7 @@ import { GET_JOB_LISTING_PATHS } from "../query/job-lisiting";
 
 export async function getJobLisitingPaths(
   options?: RequestOptions
-): Promise<{ jobListingSlug: string }[]> {
+): Promise<{ jobListingId: string }[]> {
   try {
     const response = await fetch(GRAPHQL_CDN_ENDPOINT, {
       method: "POST",
@@ -24,7 +24,7 @@ export async function getJobLisitingPaths(
     const jobListings: JobListing[] = data.jobListings || [];
 
     const paths = jobListings.map((jobListing) => ({
-      jobListingSlug: jobListing.slug,
+      jobListingId: jobListing.id,
     }));
 
     return paths;

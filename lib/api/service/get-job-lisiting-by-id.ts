@@ -1,12 +1,12 @@
 import { JobListing, RequestOptions } from "@/lib/types";
 import { GRAPHQL_CDN_ENDPOINT } from "@/lib/config";
-import { GET_JOB_LISTING_BY_SLUG } from "../query/job-lisiting";
+import { GET_JOB_LISTING_BY_ID } from "../query/job-lisiting";
 
 type Variables = {
-  slug: string;
+  id: string;
 };
 
-export async function getJobLisitingBySlug(
+export async function getJobLisitingById(
   variables: Variables,
   options?: RequestOptions
 ): Promise<JobListing | null> {
@@ -18,7 +18,7 @@ export async function getJobLisitingBySlug(
         Accept: "application/json",
       },
       body: JSON.stringify({
-        query: GET_JOB_LISTING_BY_SLUG,
+        query: GET_JOB_LISTING_BY_ID,
         variables,
       }),
     });

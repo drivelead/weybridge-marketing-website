@@ -46,6 +46,12 @@ export default function Header({}: Props) {
         </Link>
         <div className="flex flex-1 justify-end lg:gap-x-12">
           <Link
+            href="/careers"
+            className="text-md text-white font-medium hover:underline hover:underline-offset-2 uppercase"
+          >
+            Careers
+          </Link>
+          <Link
             href="/contact"
             className="text-md text-white font-medium hover:underline hover:underline-offset-2 uppercase"
           >

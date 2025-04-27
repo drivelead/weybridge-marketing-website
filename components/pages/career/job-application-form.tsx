@@ -8,9 +8,14 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { PhoneInput as IntPhoneInput } from "react-international-phone";
 
-import { createCareerApplication } from "@/app/actions";
+import {
+  createCareerApplication,
+  sendJobApplicationNotifications,
+  sendNotifications,
+} from "@/app/actions";
 import { generateUniqueId, renameFile } from "@/lib/utils";
-import { PromiseReturn } from "@/lib/types";
+import { JobListing, PromiseReturn } from "@/lib/types";
+import { createAsset } from "@/lib/api/service/create-asset";
 
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -23,11 +28,11 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Checkbox } from "@/components/ui/checkbox";
+
 import "react-international-phone/style.css";
-import { createAsset } from "@/lib/api/service/create-asset";
 
 type Props = {
-  jobListingId: string;
+  jobListing: JobListing;
 };
 
 // Zod validation schema
@@ -56,7 +61,7 @@ type FormSchemaType = z.infer<typeof formSchema>;
 
 type Status = "idle" | "uploading-file" | "submitting" | "success";
 
-export default function JobApplicationForm({ jobListingId }: Props) {
+export default function JobApplicationForm({ jobListing }: Props) {
   const [error, setError] = React.useState<string | null>(null);
   const [progress, setProgress] = React.useState<number>(0);
   const [status, setStatus] = React.useState<Status>("idle");
@@ -145,7 +150,8 @@ export default function JobApplicationForm({ jobListingId }: Props) {
     formData.append("whatsappNumber", values.whatsappNumber);
     formData.append("email", values.email);
     formData.append("currentLocation", values.currentLocation);
-    formData.append("applicationSource", jobListingId);
+    formData.append("applicationSource", jobListing.id);
+    formData.append("listingTitle", jobListing.title);
 
     // upload CV to S3
 
@@ -180,6 +186,15 @@ export default function JobApplicationForm({ jobListingId }: Props) {
 
     console.log("💡 fileUploadResponse.data", fileUploadResponse.data);
 
+    formData.append("cv", signedData.fileUrl);
+
+    setStatus("submitting");
+
+    const notificationsResponse =
+      await sendJobApplicationNotifications(formData);
+
+    console.log("💡 notificationsResponse", notificationsResponse);
+
     const assetResponse = await createAsset({
       _id: generateUniqueId(),
       url: signedData.fileUrl,
@@ -205,8 +220,6 @@ export default function JobApplicationForm({ jobListingId }: Props) {
       "timezone",
       Intl.DateTimeFormat().resolvedOptions().timeZone
     );
-
-    setStatus("submitting");
 
     const response = await createCareerApplication(formData);
 
